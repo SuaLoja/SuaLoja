@@ -9,7 +9,6 @@ export class ProductsService {
   createProduct(name: string, description: string, price: number): Product {
     const product: Product = {
       id: uuid(),
-      slug: null,
       name,
       description,
       price,

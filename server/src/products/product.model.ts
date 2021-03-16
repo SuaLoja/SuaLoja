@@ -1,6 +1,6 @@
 export interface Product {
   readonly id: string;
-  slug: string;
+  slug?: string;
   name: string;
   description: string;
   price: number;
