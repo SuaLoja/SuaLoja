@@ -8,6 +8,14 @@ import { UpdateProductDTO } from './dto/update-product.dto';
 export class ProductsService {
   private products: Product[] = [];
 
+  getAllProducts(): Product[] {
+    return this.products;
+  }
+
+  getProductById(id: string): Product {
+    return this.products.find((product) => product.id === id);
+  }
+
   createProduct(createProductDto: CreateProductDTO): Product {
     const { name, description, price } = createProductDto;
 

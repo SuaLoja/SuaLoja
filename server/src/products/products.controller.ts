@@ -2,6 +2,7 @@ import {
   Body,
   Controller,
   Delete,
+  Get,
   Param,
   Post,
   Put,
@@ -15,6 +16,16 @@ import { UpdateProductDTO } from './dto/update-product.dto';
 @Controller('products')
 export class ProductsController {
   constructor(private productsService: ProductsService) {}
+
+  @Get()
+  getAllTasks(): Product[] {
+    return this.productsService.getAllProducts();
+  }
+
+  @Get('/:id')
+  getProductById(@Param('id') id: string): Product {
+    return this.productsService.getProductById(id);
+  }
 
   @Post()
   createProduct(
