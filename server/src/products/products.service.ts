@@ -34,6 +34,10 @@ export class ProductsService {
     return product;
   }
 
+  deleteProduct(id: string): void {
+    this.products = this.products.filter((product) => product.id !== id);
+  }
+
   private generateSlug(name: string): string {
     return name.split(' ').join('-').toLowerCase();
   }

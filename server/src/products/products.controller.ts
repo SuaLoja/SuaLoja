@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Param,
   Post,
   Put,
@@ -28,5 +29,10 @@ export class ProductsController {
     @Body(ValidationPipe) updateProductDTO: UpdateProductDTO,
   ): Product {
     return this.productsService.updateProduct(id, updateProductDTO);
+  }
+
+  @Delete('/:id')
+  deleteProduct(@Param('id') id: string): void {
+    this.productsService.deleteProduct(id);
   }
 }
