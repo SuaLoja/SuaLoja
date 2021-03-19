@@ -1,52 +1,53 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { v1 as uuid } from 'uuid';
-import { Product } from './product.entity';
+import { InjectRepository } from '@nestjs/typeorm';
 import { CreateProductDTO } from './dto/create-product.dto';
 import { UpdateProductDTO } from './dto/update-product.dto';
+import { Product } from './product.entity';
+import { ProductsRepository } from './products.repository';
 
 @Injectable()
 export class ProductsService {
-  private products: Product[] = [];
+  constructor(
+    @InjectRepository(ProductsRepository)
+    private productsRepository: ProductsRepository,
+  ) {}
 
-  getAllProducts(): Product[] {
-    return this.products;
+  async getAllProducts(): Promise<Product[]> {
+    return this.productsRepository.find();
   }
 
-  getProductById(id: string): Product {
-    return this.products.find((product) => product.id === id);
-  }
-
-  createProduct(createProductDto: CreateProductDTO): Product {
-    const { name, description, price } = createProductDto;
-
-    const product: Product = {
-      id: uuid(),
-      name,
-      description,
-      price,
-    };
-    product.slug = this.generateSlug(product.name);
-
-    this.products.push(product);
-    return product;
-  }
-
-  updateProduct(id: string, updateProductDTO: UpdateProductDTO): Product {
-    const product = this.products.find((product) => product.id === id);
+  async getProductById(id: string): Promise<Product> {
+    const product = await this.productsRepository.findOne({
+      where: {
+        id,
+      },
+    });
 
     if (!product) {
       throw new NotFoundException(`No product found with the id "${id}"`);
     }
 
-    Object.assign(product, updateProductDTO);
     return product;
   }
 
-  deleteProduct(id: string): void {
-    this.products = this.products.filter((product) => product.id !== id);
+  async createProduct(createProductDto: CreateProductDTO): Promise<Product> {
+    return this.productsRepository.createProduct(createProductDto);
   }
 
-  private generateSlug(name: string): string {
-    return name.split(' ').join('-').toLowerCase();
+  async updateProduct(
+    id: string,
+    updateProductDTO: UpdateProductDTO,
+  ): Promise<Product> {
+    return this.productsRepository.updateProduct(id, updateProductDTO);
+  }
+
+  async deleteProduct(id: string): Promise<void> {
+    const productsDeleted = await this.productsRepository.delete({
+      id,
+    });
+
+    if (!productsDeleted.affected) {
+      throw new NotFoundException(`No product found with the id "${id}"`);
+    }
   }
 }
