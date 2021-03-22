@@ -16,4 +16,9 @@ export class Product extends BaseEntity {
 
   @Column()
   price: number;
+
+  @Column({
+    default: true,
+  })
+  avaliable: boolean;
 }
