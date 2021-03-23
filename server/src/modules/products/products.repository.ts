@@ -53,8 +53,18 @@ export class ProductsRepository extends Repository<Product> {
     avaliable: boolean,
   ): Promise<Product> {
     const product = await this.findOne(id);
+
+    if (!product) {
+      throw new NotFoundException(`No product found with the id "${id}"`);
+    }
+
     product.avaliable = avaliable;
-    await product.save();
+
+    try {
+      await product.save();
+    } catch (error) {
+      throw new InternalServerErrorException(error);
+    }
 
     return product;
   }
