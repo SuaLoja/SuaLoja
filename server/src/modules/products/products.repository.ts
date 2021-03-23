@@ -52,6 +52,17 @@ export class ProductsRepository extends Repository<Product> {
     return product;
   }
 
+  async updateProductAvaliability(
+    id: string,
+    avaliable: boolean,
+  ): Promise<Product> {
+    const product = await this.findOne(id);
+    product.avaliable = avaliable;
+    await product.save();
+
+    return product;
+  }
+
   private generateSlug(name: string): string {
     return name.split(' ').join('-').toLowerCase();
   }

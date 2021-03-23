@@ -41,6 +41,13 @@ export class ProductsService {
     return this.productsRepository.updateProduct(id, updateProductDTO);
   }
 
+  async updateProductAvaliability(
+    id: string,
+    avaliable: boolean,
+  ): Promise<Product> {
+    return this.productsRepository.updateProductAvaliability(id, avaliable);
+  }
+
   async deleteProduct(id: string): Promise<void> {
     const productsDeleted = await this.productsRepository.delete({
       id,

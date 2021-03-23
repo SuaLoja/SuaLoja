@@ -4,6 +4,8 @@ import {
   Delete,
   Get,
   Param,
+  ParseBoolPipe,
+  Patch,
   Post,
   Put,
   ValidationPipe,
@@ -40,6 +42,14 @@ export class ProductsController {
     @Body(ValidationPipe) updateProductDTO: UpdateProductDTO,
   ): Promise<Product> {
     return this.productsService.updateProduct(id, updateProductDTO);
+  }
+
+  @Patch('/:id/avaliable')
+  updateProductAvaliability(
+    @Param('id') id: string,
+    @Body('avaliable', ParseBoolPipe) avaliable: boolean,
+  ): Promise<Product> {
+    return this.productsService.updateProductAvaliability(id, avaliable);
   }
 
   @Delete('/:id')
