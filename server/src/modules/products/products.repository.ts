@@ -31,11 +31,7 @@ export class ProductsRepository extends Repository<Product> {
     id: string,
     updateProductDTO: UpdateProductDTO,
   ): Promise<Product> {
-    const product = await this.findOne({
-      where: {
-        id,
-      },
-    });
+    const product = await this.findOne(id);
 
     if (!product) {
       throw new NotFoundException(`No product found with the id "${id}"`);
