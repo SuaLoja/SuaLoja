@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Param,
   Post,
   Put,
@@ -28,5 +29,10 @@ export class StoresController {
     @Body(ValidationPipe) updateStoreDTO: UpdateStoreDTO,
   ): Promise<Store> {
     return this.storesService.updateStore(id, updateStoreDTO);
+  }
+
+  @Delete('/:id')
+  deleteStore(@Param('id') id: string): Promise<void> {
+    return this.storesService.deleteStore(id);
   }
 }

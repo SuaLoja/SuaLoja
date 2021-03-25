@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateStoreDTO } from './dto/create-store.dto';
 import { UpdateStoreDTO } from './dto/update-store.dto';
@@ -21,5 +21,13 @@ export class StoresService {
     updateStoreDTO: UpdateStoreDTO,
   ): Promise<Store> {
     return this.storesRepository.updateStore(id, updateStoreDTO);
+  }
+
+  async deleteStore(id: string): Promise<void> {
+    const storesDeleted = await this.storesRepository.delete(id);
+
+    if (!storesDeleted.affected) {
+      throw new NotFoundException(`No store found with the id "${id}"`);
+    }
   }
 }
