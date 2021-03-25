@@ -1,11 +1,4 @@
-import {
-  BaseEntity,
-  Column,
-  Entity,
-  OneToMany,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
-import { Product } from '../products/product.entity';
+import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('stores')
 export class Store extends BaseEntity {
@@ -14,7 +7,4 @@ export class Store extends BaseEntity {
 
   @Column()
   name: string;
-
-  @OneToMany((type) => Product, (product) => product.store, { eager: true })
-  products: Product[];
 }
