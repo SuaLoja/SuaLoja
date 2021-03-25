@@ -1,5 +1,6 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { EntityNotFoundException } from 'src/exceptions/entity-not-found.exception';
 import { CreateStoreDTO } from './dto/create-store.dto';
 import { UpdateStoreDTO } from './dto/update-store.dto';
 import { Store } from './store.entity';
@@ -20,7 +21,7 @@ export class StoresService {
     const store = await this.storesRepository.findOne(id);
 
     if (!store) {
-      throw new NotFoundException(`No store found with the id "${id}"`);
+      throw new EntityNotFoundException('store', id);
     }
 
     return store;
@@ -41,7 +42,7 @@ export class StoresService {
     const storesDeleted = await this.storesRepository.delete(id);
 
     if (!storesDeleted.affected) {
-      throw new NotFoundException(`No store found with the id "${id}"`);
+      throw new EntityNotFoundException('store', id);
     }
   }
 }

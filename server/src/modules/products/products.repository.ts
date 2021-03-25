@@ -1,7 +1,5 @@
-import {
-  InternalServerErrorException,
-  NotFoundException,
-} from '@nestjs/common';
+import { InternalServerErrorException } from '@nestjs/common';
+import { EntityNotFoundException } from 'src/exceptions/entity-not-found.exception';
 import { EntityRepository, Repository } from 'typeorm';
 import { CreateProductDTO } from './dto/create-product.dto';
 import { UpdateProductDTO } from './dto/update-product.dto';
@@ -34,7 +32,7 @@ export class ProductsRepository extends Repository<Product> {
     const product = await this.findOne(id);
 
     if (!product) {
-      throw new NotFoundException(`No product found with the id "${id}"`);
+      throw new EntityNotFoundException('product', id);
     }
 
     Object.assign(product, updateProductDTO);
@@ -55,7 +53,7 @@ export class ProductsRepository extends Repository<Product> {
     const product = await this.findOne(id);
 
     if (!product) {
-      throw new NotFoundException(`No product found with the id "${id}"`);
+      throw new EntityNotFoundException('product', id);
     }
 
     product.avaliable = avaliable;

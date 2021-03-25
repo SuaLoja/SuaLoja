@@ -1,7 +1,5 @@
-import {
-  InternalServerErrorException,
-  NotFoundException,
-} from '@nestjs/common';
+import { InternalServerErrorException } from '@nestjs/common';
+import { EntityNotFoundException } from 'src/exceptions/entity-not-found.exception';
 import { EntityRepository, Repository } from 'typeorm';
 import { CreateStoreDTO } from './dto/create-store.dto';
 import { UpdateStoreDTO } from './dto/update-store.dto';
@@ -31,7 +29,7 @@ export class StoresRepository extends Repository<Store> {
     const store = await this.findOne(id);
 
     if (!store) {
-      throw new NotFoundException(`No store found with the id "${id}"`);
+      throw new EntityNotFoundException('store', id);
     }
 
     Object.assign(store, updateStoreDTO);
