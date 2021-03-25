@@ -2,6 +2,7 @@ import {
   Body,
   Controller,
   Delete,
+  Get,
   Param,
   Post,
   Put,
@@ -15,6 +16,16 @@ import { StoresService } from './stores.service';
 @Controller('stores')
 export class StoresController {
   constructor(private storesService: StoresService) {}
+
+  @Get()
+  getAllStores(): Promise<Store[]> {
+    return this.storesService.getAllStores();
+  }
+
+  @Get('/:id')
+  getStoreById(@Param('id') id: string): Promise<Store> {
+    return this.storesService.getStoreById(id);
+  }
 
   @Post()
   createStore(

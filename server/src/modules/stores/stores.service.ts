@@ -12,6 +12,20 @@ export class StoresService {
     private storesRepository: StoresRepository,
   ) {}
 
+  async getAllStores(): Promise<Store[]> {
+    return await this.storesRepository.find();
+  }
+
+  async getStoreById(id: string): Promise<Store> {
+    const store = await this.storesRepository.findOne(id);
+
+    if (!store) {
+      throw new NotFoundException(`No store found with the id "${id}"`);
+    }
+
+    return store;
+  }
+
   async createStore(createStoreDTO: CreateStoreDTO): Promise<Store> {
     return this.storesRepository.createStore(createStoreDTO);
   }
