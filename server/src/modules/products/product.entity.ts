@@ -5,7 +5,9 @@ export class Product extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   readonly id: string;
 
-  @Column()
+  @Column({
+    unique: true,
+  })
   slug?: string;
 
   @Column()
