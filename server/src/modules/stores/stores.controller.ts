@@ -18,32 +18,30 @@ export class StoresController {
   constructor(private storesService: StoresService) {}
 
   @Get()
-  getAllStores(): Promise<Store[]> {
-    return this.storesService.getAllStores();
+  findAll(): Promise<Store[]> {
+    return this.storesService.findAll();
   }
 
   @Get('/:id')
-  getStoreById(@Param('id') id: string): Promise<Store> {
-    return this.storesService.getStoreById(id);
+  findOne(@Param('id') id: string): Promise<Store> {
+    return this.storesService.findOne(id);
   }
 
   @Post()
-  createStore(
-    @Body(ValidationPipe) createStoreDTO: CreateStoreDTO,
-  ): Promise<Store> {
-    return this.storesService.createStore(createStoreDTO);
+  create(@Body(ValidationPipe) createStoreDTO: CreateStoreDTO): Promise<Store> {
+    return this.storesService.create(createStoreDTO);
   }
 
   @Put('/:id')
-  updateStore(
+  update(
     @Param('id') id: string,
     @Body(ValidationPipe) updateStoreDTO: UpdateStoreDTO,
   ): Promise<Store> {
-    return this.storesService.updateStore(id, updateStoreDTO);
+    return this.storesService.update(id, updateStoreDTO);
   }
 
   @Delete('/:id')
-  deleteStore(@Param('id') id: string): Promise<void> {
-    return this.storesService.deleteStore(id);
+  delete(@Param('id') id: string): Promise<void> {
+    return this.storesService.delete(id);
   }
 }

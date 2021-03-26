@@ -13,11 +13,11 @@ export class StoresService {
     private storesRepository: StoresRepository,
   ) {}
 
-  async getAllStores(): Promise<Store[]> {
+  async findAll(): Promise<Store[]> {
     return await this.storesRepository.find();
   }
 
-  async getStoreById(id: string): Promise<Store> {
+  async findOne(id: string): Promise<Store> {
     const store = await this.storesRepository.findOne(id);
 
     if (!store) {
@@ -27,18 +27,15 @@ export class StoresService {
     return store;
   }
 
-  async createStore(createStoreDTO: CreateStoreDTO): Promise<Store> {
+  async create(createStoreDTO: CreateStoreDTO): Promise<Store> {
     return this.storesRepository.createStore(createStoreDTO);
   }
 
-  async updateStore(
-    id: string,
-    updateStoreDTO: UpdateStoreDTO,
-  ): Promise<Store> {
+  async update(id: string, updateStoreDTO: UpdateStoreDTO): Promise<Store> {
     return this.storesRepository.updateStore(id, updateStoreDTO);
   }
 
-  async deleteStore(id: string): Promise<void> {
+  async delete(id: string): Promise<void> {
     const storesDeleted = await this.storesRepository.delete(id);
 
     if (!storesDeleted.affected) {

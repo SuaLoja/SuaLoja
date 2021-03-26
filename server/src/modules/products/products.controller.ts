@@ -20,40 +20,40 @@ export class ProductsController {
   constructor(private productsService: ProductsService) {}
 
   @Get()
-  getAllProducts(): Promise<Product[]> {
-    return this.productsService.getAllProducts();
+  findAll(): Promise<Product[]> {
+    return this.productsService.findAll();
   }
 
   @Get('/:id')
-  getProductById(@Param('id') id: string): Promise<Product> {
-    return this.productsService.getProductById(id);
+  findOne(@Param('id') id: string): Promise<Product> {
+    return this.productsService.findOne(id);
   }
 
   @Post()
-  createProduct(
+  create(
     @Body(ValidationPipe) createProductDto: CreateProductDTO,
   ): Promise<Product> {
-    return this.productsService.createProduct(createProductDto);
+    return this.productsService.create(createProductDto);
   }
 
   @Put('/:id')
-  updateProduct(
+  update(
     @Param('id') id: string,
     @Body(ValidationPipe) updateProductDTO: UpdateProductDTO,
   ): Promise<Product> {
-    return this.productsService.updateProduct(id, updateProductDTO);
+    return this.productsService.update(id, updateProductDTO);
   }
 
   @Patch('/:id/avaliable')
-  updateProductAvaliability(
+  updateAvaliability(
     @Param('id') id: string,
     @Body('avaliable', ParseBoolPipe) avaliable: boolean,
   ): Promise<Product> {
-    return this.productsService.updateProductAvaliability(id, avaliable);
+    return this.productsService.updateAvaliability(id, avaliable);
   }
 
   @Delete('/:id')
-  deleteProduct(@Param('id') id: string): Promise<void> {
-    return this.productsService.deleteProduct(id);
+  delete(@Param('id') id: string): Promise<void> {
+    return this.productsService.delete(id);
   }
 }

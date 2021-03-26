@@ -13,11 +13,11 @@ export class ProductsService {
     private productsRepository: ProductsRepository,
   ) {}
 
-  async getAllProducts(): Promise<Product[]> {
+  async findAll(): Promise<Product[]> {
     return this.productsRepository.find();
   }
 
-  async getProductById(id: string): Promise<Product> {
+  async findOne(id: string): Promise<Product> {
     const product = await this.productsRepository.findOne(id);
 
     if (!product) {
@@ -27,25 +27,22 @@ export class ProductsService {
     return product;
   }
 
-  async createProduct(createProductDto: CreateProductDTO): Promise<Product> {
+  async create(createProductDto: CreateProductDTO): Promise<Product> {
     return this.productsRepository.createProduct(createProductDto);
   }
 
-  async updateProduct(
+  async update(
     id: string,
     updateProductDTO: UpdateProductDTO,
   ): Promise<Product> {
     return this.productsRepository.updateProduct(id, updateProductDTO);
   }
 
-  async updateProductAvaliability(
-    id: string,
-    avaliable: boolean,
-  ): Promise<Product> {
+  async updateAvaliability(id: string, avaliable: boolean): Promise<Product> {
     return this.productsRepository.updateProductAvaliability(id, avaliable);
   }
 
-  async deleteProduct(id: string): Promise<void> {
+  async delete(id: string): Promise<void> {
     const productsDeleted = await this.productsRepository.delete(id);
 
     if (!productsDeleted.affected) {
