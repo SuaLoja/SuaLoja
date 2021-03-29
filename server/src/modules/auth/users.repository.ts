@@ -2,11 +2,12 @@ import {
   ConflictException,
   InternalServerErrorException,
 } from '@nestjs/common';
+import { genSalt, hash } from 'bcryptjs';
+import { JwtPayload } from 'src/modules/auth/interfaces/jwt-payload.interface';
 import { EntityRepository, Repository } from 'typeorm';
-import { hash, genSalt } from 'bcryptjs';
+import { SignInDTO } from './dto/signin.dto';
 import { SignUpDTO } from './dto/signup.dto';
 import { User } from './user.entity';
-import { SignInDTO } from './dto/signin.dto';
 
 @EntityRepository(User)
 export class UsersRepository extends Repository<User> {
@@ -31,12 +32,15 @@ export class UsersRepository extends Repository<User> {
     }
   }
 
-  async validateUserPassword(signInDTO: SignInDTO): Promise<string> {
+  async validateUserPassword(signInDTO: SignInDTO): Promise<JwtPayload> {
     const { email, password } = signInDTO;
     const user = await this.findOne({ email });
 
     if (user && (await user.validatePassword(password))) {
-      return user.email;
+      return {
+        name: user.name,
+        email: user.email,
+      };
     }
 
     return null;
