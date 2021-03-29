@@ -1,3 +1,4 @@
+import { ConflictException } from '@nestjs/common';
 import { EntityRepository, Repository } from 'typeorm';
 import { SignUpDTO } from './dto/signup.dto';
 import { User } from './user.entity';
@@ -12,6 +13,13 @@ export class UsersRepository extends Repository<User> {
     user.email = email;
     user.password = password;
 
-    await user.save();
+    try {
+      await user.save();
+    } catch (error) {
+      if (error.code === '23505') {
+        // duplicated email
+        throw new ConflictException('An user with same email already exists');
+      }
+    }
   }
 }
