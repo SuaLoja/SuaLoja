@@ -6,6 +6,7 @@ import { EntityRepository, Repository } from 'typeorm';
 import { hash, genSalt } from 'bcryptjs';
 import { SignUpDTO } from './dto/signup.dto';
 import { User } from './user.entity';
+import { SignInDTO } from './dto/signin.dto';
 
 @EntityRepository(User)
 export class UsersRepository extends Repository<User> {
@@ -28,6 +29,17 @@ export class UsersRepository extends Repository<User> {
         throw new InternalServerErrorException();
       }
     }
+  }
+
+  async validateUserPassword(signInDTO: SignInDTO): Promise<string> {
+    const { email, password } = signInDTO;
+    const user = await this.findOne({ email });
+
+    if (user && (await user.validatePassword(password))) {
+      return user.email;
+    }
+
+    return null;
   }
 
   private async hashPassword(password: string, salt: string): Promise<string> {
