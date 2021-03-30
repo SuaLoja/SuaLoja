@@ -1,6 +1,11 @@
 {
-  "name": "web",
-  "version": "0.1.0",
+  "name": "@sualoja/web",
+  "version": "0.0.1",
+  "author": {
+    "name": "vitogd",
+    "email": "victorfelipe.guedes@hotmail.com"
+  },
+  "license": "MIT",
   "private": true,
   "scripts": {
     "dev": "next dev",

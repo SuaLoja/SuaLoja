@@ -1,10 +1,12 @@
 {
   "name": "@sualoja/server",
   "version": "0.0.1",
-  "description": "API for SuaLoja",
-  "author": "vitogd",
-  "private": true,
+  "author": {
+    "name": "vitogd",
+    "email": "victorfelipe.guedes@hotmail.com"
+  },
   "license": "MIT",
+  "private": true,
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",

@@ -1,0 +1,16 @@
+{
+  "name": "sualoja",
+  "version": "0.0.1",
+  "author": {
+    "name": "vitogd",
+    "email": "victorfelipe.guedes@hotmail.com"
+  },
+  "license": "MIT",
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "server",
+      "clients/web"
+    ]
+  }
+}
