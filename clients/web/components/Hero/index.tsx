@@ -10,7 +10,7 @@ import {
 import { HiArrowNarrowRight } from "react-icons/hi";
 import { UnderlinedText } from "./UnderlinedText";
 
-export default function Hero() {
+export function Hero() {
   return (
     <Container maxW="7xl">
       <Stack align="center" spacing={10} py={28} direction="row">
