@@ -1,4 +1,6 @@
 import Head from "next/head";
+import { Flex } from "@chakra-ui/react";
+import { Navbar } from "../components/Navbar";
 
 export default function Home() {
   return (
@@ -8,9 +10,9 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
-        <h1>Hello World</h1>
-      </main>
+      <Flex marginX={56} marginY={3.5}>
+        <Navbar />
+      </Flex>
     </div>
   );
 }
