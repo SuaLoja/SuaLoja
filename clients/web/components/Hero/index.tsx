@@ -7,6 +7,7 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
+import { HiArrowNarrowRight } from "react-icons/hi";
 import { UnderlinedText } from "./UnderlinedText";
 
 export default function Hero() {
@@ -32,6 +33,7 @@ export default function Hero() {
             width="100%"
             bg="teal.400"
             _hover={{ bg: "teal.300" }}
+            rightIcon={<HiArrowNarrowRight />}
           >
             Crie sua loja
           </Button>
