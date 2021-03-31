@@ -2,6 +2,7 @@ import Head from "next/head";
 import { Flex } from "@chakra-ui/react";
 import { Navbar } from "../components/Navbar";
 import Hero from "../components/Hero";
+import { Footer } from "../components/Footer";
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
         <Navbar />
         <Hero />
       </Flex>
+      <Footer />
     </div>
   );
 }
