@@ -1,4 +1,5 @@
 import { Button, Container, Flex, Spacer, Stack } from "@chakra-ui/react";
+import ThemeSwitcher from "../ThemeSwitcher";
 import { NavLink } from "./NavLink";
 import { NavLogo } from "./NavLogo";
 
@@ -29,6 +30,7 @@ export function Navbar() {
         >
           Registrar-se
         </Button>
+        <ThemeSwitcher variant="ghost" />
       </Stack>
     </Flex>
   );
