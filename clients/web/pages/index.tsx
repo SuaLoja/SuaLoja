@@ -12,7 +12,12 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Flex marginX={56} marginY={3.5} direction="column">
+      <Flex
+        marginX={56}
+        marginY={3.5}
+        direction="column"
+        minHeight="calc(100vh - 72px)"
+      >
         <Navbar />
         <Hero />
       </Flex>
