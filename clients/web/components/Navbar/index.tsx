@@ -1,9 +1,9 @@
-import { Button, Container, Flex, Spacer, Stack } from "@chakra-ui/react";
-import ThemeSwitcher from "../ThemeSwitcher";
-import { NavLink } from "./NavLink";
-import { NavLogo } from "./NavLogo";
+import { Button, Flex, Spacer, Stack } from '@chakra-ui/react';
+import { ThemeSwitcher } from '../ThemeSwitcher';
+import { NavLink } from './NavLink';
+import { NavLogo } from './NavLogo';
 
-export function Navbar() {
+export const Navbar: React.FC = () => {
   return (
     <Flex width="100%" alignItems="center">
       <NavLogo />
@@ -25,7 +25,7 @@ export function Navbar() {
           color="white"
           bg="teal.400"
           _hover={{
-            bg: "teal.300",
+            bg: 'teal.300',
           }}
         >
           Registrar-se
@@ -34,4 +34,4 @@ export function Navbar() {
       </Stack>
     </Flex>
   );
-}
+};

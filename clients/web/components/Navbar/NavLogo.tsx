@@ -1,13 +1,13 @@
-import { Heading, useColorModeValue } from "@chakra-ui/react";
+import { Heading, useColorModeValue } from '@chakra-ui/react';
 
-export function NavLogo() {
+export const NavLogo: React.FC = () => {
   return (
     <Heading
       size="md"
       fontWeight={600}
-      color={useColorModeValue("gray.600", "gray.200")}
+      color={useColorModeValue('gray.600', 'gray.200')}
     >
       SuaLoja
     </Heading>
   );
-}
+};

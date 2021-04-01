@@ -1,21 +1,20 @@
-import { Text } from "@chakra-ui/react";
+import { Text } from '@chakra-ui/react';
 
 interface UnderlinedTextProps {
   text: string;
   bgColor: string;
-  [propName: string]: any;
 }
 
-export function UnderlinedText(props: UnderlinedTextProps) {
+export const UnderlinedText: React.FC<UnderlinedTextProps> = (props) => {
   return (
     <Text
       as="span"
       position="relative"
       _after={{
         content: "''",
-        width: "full",
-        height: "25%",
-        position: "absolute",
+        width: 'full',
+        height: '25%',
+        position: 'absolute',
         bottom: 1,
         left: 0,
         bg: props.bgColor,
@@ -25,4 +24,4 @@ export function UnderlinedText(props: UnderlinedTextProps) {
       {props.text}
     </Text>
   );
-}
+};

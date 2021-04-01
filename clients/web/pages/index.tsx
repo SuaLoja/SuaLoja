@@ -1,8 +1,8 @@
-import Head from "next/head";
-import { Flex } from "@chakra-ui/react";
-import { Navbar } from "../components/Navbar";
-import { Hero } from "../components/Hero";
-import { Footer } from "../components/Footer";
+import { Flex } from '@chakra-ui/react';
+import Head from 'next/head';
+import { Footer } from '../components/Footer';
+import { Hero } from '../components/Hero';
+import { Navbar } from '../components/Navbar';
 
 export default function Home() {
   return (

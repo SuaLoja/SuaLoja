@@ -1,8 +1,8 @@
-import { extendTheme } from "@chakra-ui/react";
+import { extendTheme } from '@chakra-ui/react';
 
 export default extendTheme({
   fonts: {
-    heading: "Montserrat",
-    body: "Montserrat",
+    heading: 'Montserrat',
+    body: 'Montserrat',
   },
 });

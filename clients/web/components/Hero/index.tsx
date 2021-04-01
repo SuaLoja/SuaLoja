@@ -6,11 +6,11 @@ import {
   Image,
   Stack,
   Text,
-} from "@chakra-ui/react";
-import { HiArrowNarrowRight } from "react-icons/hi";
-import { UnderlinedText } from "./UnderlinedText";
+} from '@chakra-ui/react';
+import { HiArrowNarrowRight } from 'react-icons/hi';
+import { UnderlinedText } from './UnderlinedText';
 
-export function Hero() {
+export const Hero: React.FC = () => {
   return (
     <Container maxW="7xl">
       <Stack align="center" spacing={10} py={28} direction="row">
@@ -32,7 +32,7 @@ export function Hero() {
             color="white"
             width="100%"
             bg="teal.400"
-            _hover={{ bg: "teal.300" }}
+            _hover={{ bg: 'teal.300' }}
             rightIcon={<HiArrowNarrowRight />}
           >
             Crie sua loja
@@ -57,4 +57,4 @@ export function Hero() {
       </Stack>
     </Container>
   );
-}
+};

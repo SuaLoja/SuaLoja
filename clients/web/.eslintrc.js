@@ -34,6 +34,13 @@ module.exports = {
         'plugin:jsx-a11y/recommended',
         'plugin:prettier/recommended',
       ],
+      settings: {
+        "import/resolver": {
+          "node": {
+            "extensions": [".js", ".jsx", ".ts", ".tsx"]
+          }
+        }
+      }
       rules: {
         'react/prop-types': 'off',
         'react/react-in-jsx-scope': 'off',
@@ -55,6 +62,16 @@ module.exports = {
         ],
         "react/jsx-filename-extension": [1, { "extensions": [".tsx"] }],
         "import/prefer-default-export": "off",
+        "import/extensions": [
+          "error",
+          "ignorePackages",
+          {
+            "js": "never",
+            "jsx": "never",
+            "ts": "never",
+            "tsx": "never"
+          }
+        ]
       },
     },
   ],

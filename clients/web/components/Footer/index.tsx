@@ -5,12 +5,12 @@ import {
   Spacer,
   Stack,
   useColorModeValue,
-} from "@chakra-ui/react";
-import { FaGithub } from "react-icons/fa";
+} from '@chakra-ui/react';
+import { FaGithub } from 'react-icons/fa';
 
-export function Footer() {
+export const Footer: React.FC = () => {
   return (
-    <Box bg={useColorModeValue("gray.50", "gray.900")} marginTop={100}>
+    <Box bg={useColorModeValue('gray.50', 'gray.900')} marginTop={100}>
       <Stack
         direction="row"
         spacing={4}
@@ -27,7 +27,7 @@ export function Footer() {
           aria-label="Github"
           icon={<FaGithub />}
           bg="teal.400"
-          _hover={{ bg: "teal.300" }}
+          _hover={{ bg: 'teal.300' }}
           color="white"
           as="a"
           href="https://github.com/SuaLoja"
@@ -36,4 +36,4 @@ export function Footer() {
       </Stack>
     </Box>
   );
-}
+};
