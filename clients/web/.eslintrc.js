@@ -20,7 +20,16 @@ module.exports = {
     {
       files: ['**/*.ts', ' **/*.tsx'],
       parser: '@typescript-eslint/parser',
-      settings: { react: { version: 'detect' } },
+      settings: {
+        react: {
+          version: 'detect'
+        },
+        "import/resolver": {
+          "node": {
+            "extensions": [".js", ".jsx", ".ts", ".tsx"]
+          }
+        }
+      },
       env: {
         browser: true,
         node: true,
@@ -34,13 +43,6 @@ module.exports = {
         'plugin:jsx-a11y/recommended',
         'plugin:prettier/recommended',
       ],
-      settings: {
-        "import/resolver": {
-          "node": {
-            "extensions": [".js", ".jsx", ".ts", ".tsx"]
-          }
-        }
-      }
       rules: {
         'react/prop-types': 'off',
         'react/react-in-jsx-scope': 'off',
