@@ -8,7 +8,6 @@ import {
   Text,
 } from '@chakra-ui/react';
 import { HiArrowNarrowRight } from 'react-icons/hi';
-import { UnderlinedText } from './UnderlinedText';
 
 export const Hero: React.FC = () => {
   return (
@@ -20,7 +19,22 @@ export const Hero: React.FC = () => {
               Sua loja completa
             </Text>
             <br />
-            <UnderlinedText bgColor="teal.400" text="em minutos!" />
+            <Text
+              as="span"
+              position="relative"
+              _after={{
+                content: "''",
+                width: 'full',
+                height: '25%',
+                position: 'absolute',
+                bottom: 1,
+                left: 0,
+                bg: 'teal.400',
+                zIndex: -1,
+              }}
+            >
+              em minutos!
+            </Text>
           </Heading>
           <Text fontSize="xl" color="gray.500">
             Crie uma página virtual para seu negócio, coloque seus produtos,
