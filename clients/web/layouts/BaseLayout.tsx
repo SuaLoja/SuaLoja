@@ -1,12 +1,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
 
-import { Flex } from '@chakra-ui/react';
+import { Flex, FlexProps } from '@chakra-ui/react';
 
-interface BaseLayoutProps {
-  minHeight?: string;
-}
-
-export const BaseLayout: React.FC<BaseLayoutProps> = (props) => {
+export const BaseLayout: React.FC<FlexProps> = (props) => {
   const { children } = props;
 
   return (
