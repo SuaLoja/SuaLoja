@@ -25,7 +25,7 @@ export default function Dashboard() {
       <BaseLayout marginY={16} direction="row">
         <Flex direction="column">
           <Stack spacing={4} direction="row" alignItems="center">
-            <Avatar size="md" name="Victor Guedes" bg="teal.500" />
+            <Avatar size="md" name="Victor Guedes" bg="brand.500" />
             <Heading size="md">Victor Guedes</Heading>
           </Stack>
           <Stack marginTop={10}>

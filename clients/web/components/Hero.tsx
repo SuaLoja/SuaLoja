@@ -15,7 +15,7 @@ export const Hero: React.FC = () => {
       <Stack align="center" spacing={10} py={28} direction="row">
         <Stack flex={1} spacing={10}>
           <Heading lineHeight={1.1} fontWeight={600} fontSize="5xl">
-            <Text as="span" color="teal.400">
+            <Text as="span" color="brand.400">
               Sua loja completa
             </Text>
             <br />
@@ -29,7 +29,7 @@ export const Hero: React.FC = () => {
                 position: 'absolute',
                 bottom: 1,
                 left: 0,
-                bg: 'teal.400',
+                bg: 'brand.400',
                 zIndex: -1,
               }}
             >
@@ -45,8 +45,8 @@ export const Hero: React.FC = () => {
             px={6}
             color="white"
             width="100%"
-            bg="teal.400"
-            _hover={{ bg: 'teal.300' }}
+            bg="brand.400"
+            _hover={{ bg: 'brand.300' }}
             rightIcon={<HiArrowNarrowRight />}
           >
             Crie sua loja

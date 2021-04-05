@@ -23,9 +23,9 @@ export const Navbar: React.FC = () => {
           fontSize="sm"
           fontWeight={600}
           color="white"
-          bg="teal.400"
+          bg="brand.400"
           _hover={{
-            bg: 'teal.300',
+            bg: 'brand.300',
           }}
         >
           Registrar-se

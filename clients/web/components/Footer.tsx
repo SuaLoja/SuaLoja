@@ -26,8 +26,8 @@ export const Footer: React.FC = () => {
         <IconButton
           aria-label="Github"
           icon={<FaGithub />}
-          bg="teal.400"
-          _hover={{ bg: 'teal.300' }}
+          bg="brand.400"
+          _hover={{ bg: 'brand.300' }}
           color="white"
           as="a"
           href="https://github.com/SuaLoja"
