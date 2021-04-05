@@ -3,7 +3,7 @@
 import { Flex } from '@chakra-ui/react';
 
 interface BaseLayoutProps {
-  minHeight: string;
+  minHeight?: string;
 }
 
 export const BaseLayout: React.FC<BaseLayoutProps> = (props) => {
