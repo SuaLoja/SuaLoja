@@ -16,6 +16,7 @@ export default function Dashboard() {
           <Stack marginTop={10}>
             <SidebarButton icon={<FiShoppingCart />} label="Lojas" />
             <SidebarButton icon={<FiSettings />} label="Configurações" />
+            <Divider />
             <SidebarButton icon={<FiLogOut />} label="Sair" />
             <Divider />
           </Stack>
