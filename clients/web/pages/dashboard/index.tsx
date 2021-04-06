@@ -1,35 +1,131 @@
-import { Avatar, Divider, Flex, Heading, Stack } from '@chakra-ui/react';
-import { FiLogOut, FiSettings, FiShoppingCart } from 'react-icons/fi';
-import { CreateStoreCard } from '../../components/Dashboard/CreateStoreCard';
-import { SidebarButton } from '../../components/Dashboard/SidebarButton';
-import { StoreCard } from '../../components/Dashboard/StoreCard';
-import { BaseLayout } from '../../layouts/BaseLayout';
+import {
+  Avatar,
+  Box,
+  Button,
+  Divider,
+  Flex,
+  Heading,
+  Text,
+  useColorModeValue,
+} from '@chakra-ui/react';
+import Head from 'next/head';
+import {
+  BiBasket,
+  BiCog,
+  BiCollection,
+  BiLogOut,
+  BiUser,
+} from 'react-icons/bi';
 
 export default function Dashboard() {
   return (
     <>
-      <BaseLayout marginY={16} direction="row">
-        <Flex direction="column">
-          <Stack spacing={4} direction="row" alignItems="center">
-            <Avatar size="md" name="Victor Guedes" bg="brand.500" />
-            <Heading size="md">Victor Guedes</Heading>
-          </Stack>
-          <Stack marginTop={10}>
-            <SidebarButton icon={<FiShoppingCart />} label="Lojas" />
-            <SidebarButton icon={<FiSettings />} label="Configurações" />
-            <Divider />
-            <SidebarButton icon={<FiLogOut />} label="Sair" />
-            <Divider />
-          </Stack>
+      <Head>
+        <link
+          href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+          rel="stylesheet"
+        />
+      </Head>
+      <Flex>
+        <Flex
+          direction="column"
+          width={64}
+          h="100vh"
+          paddingX={4}
+          paddingY={8}
+          borderRight="1px"
+          background={useColorModeValue('white', 'gray.800')}
+          borderColor={useColorModeValue('gray.200', 'gray.600')}
+        >
+          <Heading size="lg">Victor Shop</Heading>
+
+          <Flex
+            direction="column"
+            justifyContent="space-between"
+            marginTop={12}
+            flex={1}
+          >
+            <Box>
+              <Button
+                fontWeight="medium"
+                leftIcon={<BiBasket />}
+                paddingX={4}
+                variant="outline"
+                width="100%"
+                justifyContent="flex-start"
+                color={useColorModeValue('gray.600', 'gray.50')}
+              >
+                <Text marginX={2}>Produtos</Text>
+              </Button>
+
+              <Button
+                marginTop={5}
+                fontWeight="medium"
+                leftIcon={<BiCollection />}
+                paddingX={4}
+                variant="outline"
+                width="100%"
+                justifyContent="flex-start"
+                color={useColorModeValue('gray.600', 'gray.50')}
+              >
+                <Text marginX={2}>Categorias</Text>
+              </Button>
+
+              <Button
+                marginTop={5}
+                fontWeight="medium"
+                leftIcon={<BiCog />}
+                paddingX={4}
+                variant="outline"
+                width="100%"
+                justifyContent="flex-start"
+                color={useColorModeValue('gray.600', 'gray.50')}
+              >
+                <Text marginX={2}>Configurações</Text>
+              </Button>
+
+              <Divider marginY={6} />
+
+              <Button
+                fontWeight="medium"
+                leftIcon={<BiUser />}
+                paddingX={4}
+                variant="outline"
+                width="100%"
+                justifyContent="flex-start"
+                color={useColorModeValue('gray.600', 'gray.50')}
+              >
+                <Text marginX={2}>Conta</Text>
+              </Button>
+
+              <Button
+                marginTop={5}
+                fontWeight="medium"
+                leftIcon={<BiLogOut />}
+                paddingX={4}
+                variant="outline"
+                width="100%"
+                justifyContent="flex-start"
+                color={useColorModeValue('gray.600', 'gray.50')}
+              >
+                <Text marginX={2}>Sair</Text>
+              </Button>
+            </Box>
+
+            <Flex alignItems="center" paddingX={4} marginX={-2}>
+              <Avatar
+                size="md"
+                marginX={2}
+                objectFit="cover"
+                name="Victor Guedes"
+              />
+              <Text marginX={2} fontWeight="medium">
+                Victor Guedes
+              </Text>
+            </Flex>
+          </Flex>
         </Flex>
-        <Flex direction="column" marginLeft={24}>
-          <Heading size="lg">Lojas</Heading>
-          <Stack marginTop={10} spacing={4} direction="row">
-            <StoreCard storeName="Victor Shop" isActive={false} />
-            <CreateStoreCard />
-          </Stack>
-        </Flex>
-      </BaseLayout>
+      </Flex>
     </>
   );
 }
