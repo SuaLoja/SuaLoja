@@ -16,6 +16,7 @@
     "@chakra-ui/react": "^1.4.2",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
+    "axios": "^0.21.1",
     "framer-motion": "^4",
     "next": "10.1.2",
     "react": "17.0.2",
@@ -23,6 +24,7 @@
     "react-icons": "^4.2.0"
   },
   "devDependencies": {
+    "@types/axios": "^0.14.0",
     "@types/react": "^17.0.3",
     "@types/react-icons": "^3.0.0"
   }
