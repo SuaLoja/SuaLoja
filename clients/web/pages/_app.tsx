@@ -1,14 +1,7 @@
-import { ChakraProvider } from "@chakra-ui/react";
-import Theme from "../assets/Theme";
-import { Fonts } from "../assets/Fonts";
+import React from 'react';
 
-function MyApp({ Component, pageProps }) {
-  return (
-    <ChakraProvider theme={Theme}>
-      <Fonts />
-      <Component {...pageProps} />
-    </ChakraProvider>
-  );
+function SuaLojaApp({ Component, pageProps }) {
+  return <Component {...pageProps} />;
 }
 
-export default MyApp;
+export default SuaLojaApp;
