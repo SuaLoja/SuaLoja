@@ -113,6 +113,52 @@ export default function Home() {
               </div>
             </div>
           </header>
+          <main className="flex-grow">
+            <section className="relative">
+              <div className="max-w-6xl ml-auto mr-auto px-6">
+                <div className="pb-20 pt-40">
+                  <div className="text-center pb-16">
+                    <h1 className="text-8xl font-extrabold leading-2 tracking-tighter mb-4 ">
+                      {'Crie sua própria loja '}
+                      <span
+                        className="bg-clip-text bg-gradient-to-r from-[#338cf5] to-[#4fd1c5]"
+                        style={{
+                          WebkitTextFillColor: 'transparent',
+                        }}
+                      >
+                        facilmente
+                      </span>
+                    </h1>
+                    <div className="max-w-3xl ml-auto mr-auto">
+                      <p className="text-[1.3rem] mb-8 text-gray-500">
+                        Crie uma página virtual para seu negócio, coloque seus
+                        produtos, customize e comece a vender. Tudo isso de
+                        graça e sem nenhuma taxa.
+                      </p>
+                      <div className="ml-auto mr-auto max-w-none flex justify-center">
+                        <div>
+                          <a
+                            href="/"
+                            className="py-3 px-8 border-4 shadow-lg inline-flex items-center border-transparent leading-5 bg-[#0070f4] w-auto mb-0 outline-none text-white rounded font-medium"
+                          >
+                            Criar loja grátis
+                          </a>
+                        </div>
+                        <div>
+                          <a
+                            href="/"
+                            className="py-3 px-8 border-4 shadow-lg inline-flex items-center border-transparent ml-4  leading-5 bg-[#191919] text-white rounded font-medium"
+                          >
+                            Saiba mais
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </main>
         </div>
       </body>
     </div>
