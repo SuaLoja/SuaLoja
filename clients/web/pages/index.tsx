@@ -16,7 +16,7 @@ export default function Home() {
 
       <body className="tracking-tighter bg-white">
         <div className="flex flex-col min-h-screen">
-          <header className="fixed w-full z-30  text-gray-500 hover:text-gray-800">
+          <header className="fixed w-full z-30  text-gray-500 font-medium bg-white opacity-[.99]">
             <div className="max-w-6xl ml-auto mr-auto pl-5 pr-5">
               <div className="flex items-center justify-between h-16">
                 <div className="flex-shrink-0 mr-4">
@@ -51,11 +51,11 @@ export default function Home() {
                   </a>
                 </div>
                 <nav className="flex-grow flex">
-                  <ul className="flex flex-wrap items-center justify-end flex-grow">
+                  <ul className="flex flex-wrap items-center justify-end flex-grow text-center">
                     <li>
                       <a
                         href="/"
-                        className="flex items-center pt-2 pb-2 outline-none pr-5 pl-5"
+                        className="flex items-center pt-2 pb-2 outline-none pr-5 pl-5 hover:text-gray-800"
                       >
                         Sobre
                       </a>
@@ -63,7 +63,7 @@ export default function Home() {
                     <li>
                       <a
                         href="/"
-                        className="flex items-center pt-2 pb-2 outline-none pr-5 pl-5"
+                        className="flex items-center pt-2 pb-2 outline-none pr-5 pl-5 hover:text-gray-800"
                       >
                         Documentação
                       </a>
@@ -71,7 +71,7 @@ export default function Home() {
                     <li>
                       <a
                         href="/"
-                        className="flex items-center pt-2 pb-2 outline-none pr-5 pl-5"
+                        className="flex items-center pt-2 pb-2 outline-none pr-5 pl-5 hover:text-gray-800"
                       >
                         Changelog
                       </a>
@@ -81,7 +81,7 @@ export default function Home() {
                     <li>
                       <a
                         href="/"
-                        className="font-medium pl-5 pr-2 pt-3 pb-3 flex items-center "
+                        className="font-medium pl-5 pr-2 pt-3 pb-3 flex items-center hover:text-gray-800"
                       >
                         Sign in
                       </a>
@@ -89,7 +89,7 @@ export default function Home() {
                     <li>
                       <a
                         href="/"
-                        className="p-2 shadow-md font-medium py-1 px-4 flex items-center justify-center border-2 rounded-sm bg-gray-900 ml-3 text-gray-200 hover:bg-gray-800 border-black"
+                        className="p-2 shadow-md font-medium py-1 px-4 flex items-center justify-center border-2 rounded-sm bg-gray-900 ml-3 text-gray-200 hover:bg-gray-800 border-black hover:text-gray-50"
                         style={{
                           padding: '.4rem 1rem',
                           borderRadius: '.25rem',
