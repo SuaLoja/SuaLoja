@@ -41,7 +41,7 @@
       }
     ],
     "react/jsx-filename-extension": [1, { "extensions": [".ts", ".tsx"] }],
-    "arrow-body-style": ["error", "never"],
+    "arrow-body-style": ["error", "always"],
     "react/jsx-props-no-spreading": "off"
   }
 }
