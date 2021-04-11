@@ -1,14 +1,10 @@
-import { ChakraProvider } from "@chakra-ui/react";
-import Theme from "../assets/Theme";
-import { Fonts } from "../assets/Fonts";
+import React from 'react';
+import type { AppProps } from 'next/app';
+import '../styles/style.scss';
+import '@tailwindcss/custom-forms/dist/custom-forms.min.css';
 
-function MyApp({ Component, pageProps }) {
-  return (
-    <ChakraProvider theme={Theme}>
-      <Fonts />
-      <Component {...pageProps} />
-    </ChakraProvider>
-  );
+function SuaLojaApp({ Component, pageProps }: AppProps): React.ReactElement {
+  return <Component {...pageProps} />;
 }
 
-export default MyApp;
+export default SuaLojaApp;
