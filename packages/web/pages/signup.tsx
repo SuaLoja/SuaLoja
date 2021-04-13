@@ -1,5 +1,20 @@
 import React from 'react'
+import * as yup from 'yup'
 import Header from '../components/Header'
+import { Formik, Form, Field } from 'formik'
+
+const signupSchema = yup.object().shape({
+  name: yup
+    .string()
+    .required('Campo obrigatório.')
+    .min(2, 'Nome muito pequeno.'),
+  email: yup.string().email('Email inválido.').required('Campo obrigatório.'),
+  password: yup
+    .string()
+    .min(8, 'A senha é muito fraca!')
+    .max(20, 'A senha é muito grande!')
+    .required('Campo obrigatório.')
+})
 
 export default function SignUp(): React.ReactElement {
   return (
@@ -14,76 +29,100 @@ export default function SignUp(): React.ReactElement {
                 <h1 className="h1">Crie sua conta gratuitamente.</h1>
               </div>
               <div className="max-w-sm mx-auto">
-                <form>
-                  <div className="flex flex-wrap -mx-3 mb-4">
-                    <div className="w-full px-3">
-                      <label
-                        className="block text-gray-800 text-sm font-medium mb-1"
-                        htmlFor="name"
-                      >
-                        Nome <span className="text-red-600">*</span>
-                      </label>
-                      <input
-                        id="name"
-                        type="text"
-                        className="form-input w-full text-gray-800"
-                        placeholder="Digite seu nome"
-                        required
-                      />
-                    </div>
-                  </div>
-                  <div className="flex flex-wrap -mx-3 mb-4">
-                    <div className="w-full px-3">
-                      <label
-                        className="block text-gray-800 text-sm font-medium mb-1"
-                        htmlFor="email"
-                      >
-                        Email <span className="text-red-600">*</span>
-                      </label>
-                      <input
-                        id="email"
-                        type="email"
-                        className="form-input w-full text-gray-800"
-                        placeholder="Digite seu email"
-                        required
-                      />
-                    </div>
-                  </div>
-                  <div className="flex flex-wrap -mx-3 mb-4">
-                    <div className="w-full px-3">
-                      <label
-                        className="block text-gray-800 text-sm font-medium mb-1"
-                        htmlFor="password"
-                      >
-                        Senha <span className="text-red-600">*</span>
-                      </label>
-                      <input
-                        id="password"
-                        type="password"
-                        className="form-input w-full text-gray-800"
-                        placeholder="Digite sua senha"
-                        required
-                      />
-                    </div>
-                  </div>
-                  <div className="flex flex-wrap -mx-3 mt-6">
-                    <div className="w-full px-3">
-                      <button
-                        className="btn text-white bg-blue-600 hover:bg-blue-700 w-full"
-                        type="button"
-                      >
-                        Enviar
-                      </button>
-                    </div>
-                  </div>
-                  <div className="text-sm text-gray-500 text-center mt-3">
-                    Ao criar uma conta, você concorda com os{' '}
-                    <a className="underline" href="#0">
-                      termos e condições
-                    </a>
-                    .
-                  </div>
-                </form>
+                <Formik
+                  initialValues={{
+                    name: '',
+                    email: '',
+                    password: ''
+                  }}
+                  validationSchema={signupSchema}
+                  onSubmit={values => {
+                    console.log(values)
+                  }}
+                >
+                  {({ errors, touched }) => (
+                    <Form>
+                      <div className="flex flex-wrap -mx-3 mb-4">
+                        <div className="w-full px-3">
+                          <label
+                            className="block text-gray-800 text-sm font-medium mb-1"
+                            htmlFor="name"
+                          >
+                            Nome
+                          </label>
+                          <Field
+                            name="name"
+                            className="form-input w-full text-gray-800 focus:ring-inset-red-600"
+                            placeholder="Digite seu nome"
+                          />
+                          {errors.name && touched.name ? (
+                            <span className="text-red-600 text-sm">
+                              {errors.name}
+                            </span>
+                          ) : null}
+                        </div>
+                      </div>
+                      <div className="flex flex-wrap -mx-3 mb-4">
+                        <div className="w-full px-3">
+                          <label
+                            className="block text-gray-800 text-sm font-medium mb-1"
+                            htmlFor="email"
+                          >
+                            Email
+                          </label>
+                          <Field
+                            name="email"
+                            className="form-input w-full text-gray-800"
+                            placeholder="Digite seu email"
+                          />
+                          {errors.email && touched.email ? (
+                            <span className="text-red-600 text-sm">
+                              {errors.email}
+                            </span>
+                          ) : null}
+                        </div>
+                      </div>
+                      <div className="flex flex-wrap -mx-3 mb-4">
+                        <div className="w-full px-3">
+                          <label
+                            className="block text-gray-800 text-sm font-medium mb-1"
+                            htmlFor="password"
+                          >
+                            Senha
+                          </label>
+                          <Field
+                            name="password"
+                            type="password"
+                            className="form-input w-full text-gray-800"
+                            placeholder="Digite sua senha"
+                          />
+                          {errors.password && touched.password ? (
+                            <span className="text-red-600 text-sm">
+                              {errors.password}
+                            </span>
+                          ) : null}
+                        </div>
+                      </div>
+                      <div className="flex flex-wrap -mx-3 mt-6">
+                        <div className="w-full px-3">
+                          <button
+                            className="btn text-white bg-blue-600 hover:bg-blue-700 w-full"
+                            type="submit"
+                          >
+                            Enviar
+                          </button>
+                        </div>
+                      </div>
+                    </Form>
+                  )}
+                </Formik>
+                <div className="text-sm text-gray-500 text-center mt-3">
+                  Ao criar uma conta, você concorda com os{' '}
+                  <a className="underline" href="#0">
+                    termos e condições
+                  </a>
+                  .
+                </div>
                 <div className="flex items-center my-6">
                   <div
                     className="border-t border-gray-300 flex-grow mr-3"
