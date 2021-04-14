@@ -1,5 +1,5 @@
-import React from 'react'
-import { AxiosError } from 'axios'
+import React, { useState } from 'react'
+import { AxiosError, AxiosResponse } from 'axios'
 import { Field, Form, Formik } from 'formik'
 import * as yup from 'yup'
 import Message from '../components/Form/Message'
@@ -20,6 +20,9 @@ const signupSchema = yup.object().shape({
 })
 
 export default function SignUp(): React.ReactElement {
+  const [text, setText] = useState<string>()
+  const [color, setColor] = useState<string>()
+
   return (
     <div className="flex flex-col min-h-screen overflow-hidden">
       <Header />
@@ -32,10 +35,7 @@ export default function SignUp(): React.ReactElement {
                 <h1 className="h1">Crie sua conta gratuitamente.</h1>
               </div>
               <div className="max-w-sm mx-auto">
-                <Message
-                  text="Esse email já está cadastrado."
-                  color="red-500"
-                />
+                {text && color ? <Message text={text} color={color} /> : null}
                 <Formik
                   initialValues={{
                     name: '',
@@ -44,11 +44,18 @@ export default function SignUp(): React.ReactElement {
                   }}
                   validationSchema={signupSchema}
                   onSubmit={async values => {
-                    await api
+                    api
                       .post('/auth/signup', values)
+                      .then((response: AxiosResponse) => {
+                        if (response.status === 201) {
+                          setColor('green')
+                          setText('Conta criada com sucesso!')
+                        }
+                      })
                       .catch((error: AxiosError) => {
-                        if (error.response.status === 403) {
-                          // Set message to visible here
+                        if (error.response.status === 409) {
+                          setColor('red')
+                          setText('Uma conta com o mesmo email já existe.')
                         }
                       })
                   }}
