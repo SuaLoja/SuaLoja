@@ -1,7 +1,10 @@
 import React from 'react'
+import { AxiosError } from 'axios'
+import { Field, Form, Formik } from 'formik'
 import * as yup from 'yup'
+import Message from '../components/Form/Message'
 import Header from '../components/Header'
-import { Formik, Form, Field } from 'formik'
+import api from '../config/api'
 
 const signupSchema = yup.object().shape({
   name: yup
@@ -29,6 +32,10 @@ export default function SignUp(): React.ReactElement {
                 <h1 className="h1">Crie sua conta gratuitamente.</h1>
               </div>
               <div className="max-w-sm mx-auto">
+                <Message
+                  text="Esse email já está cadastrado."
+                  color="red-500"
+                />
                 <Formik
                   initialValues={{
                     name: '',
@@ -36,8 +43,14 @@ export default function SignUp(): React.ReactElement {
                     password: ''
                   }}
                   validationSchema={signupSchema}
-                  onSubmit={values => {
-                    console.log(values)
+                  onSubmit={async values => {
+                    await api
+                      .post('/auth/signup', values)
+                      .catch((error: AxiosError) => {
+                        if (error.response.status === 403) {
+                          // Set message to visible here
+                        }
+                      })
                   }}
                 >
                   {({ errors, touched }) => (
