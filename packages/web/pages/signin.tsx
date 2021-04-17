@@ -1,14 +1,22 @@
 import React from 'react'
-import { Field, Form, Formik } from 'formik'
 import * as yup from 'yup'
+import { Field, Form, Formik } from 'formik'
+import { getCsrfToken } from 'next-auth/client'
+import { GetServerSidePropsContext } from 'next'
+import axios from 'axios'
 import Header from '../components/Header'
 
 const signinSchema = yup.object().shape({
   email: yup.string().email('Email inválido.').required('Campo obrigatório.'),
-  password: yup.string().required('Campo obrigatório.')
+  password: yup.string().required('Campo obrigatório.'),
+  csrfToken: yup.string()
 })
 
-export default function SignIn(): React.ReactElement {
+export default function SignIn({
+  csrfToken
+}: {
+  csrfToken: string
+}): React.ReactElement {
   return (
     <div className="flex flex-col min-h-screen overflow-hidden">
       <Header />
@@ -26,17 +34,18 @@ export default function SignIn(): React.ReactElement {
                 <Formik
                   initialValues={{
                     email: '',
-                    password: ''
+                    password: '',
+                    csrfToken
                   }}
                   validationSchema={signinSchema}
                   onSubmit={values => {
-                    console.log(values)
-                    // Send to api here
+                    axios.post('/api/auth/callback/sualoja', values)
                   }}
                 >
                   {({ errors, touched }) => (
                     <Form>
                       <div className="flex flex-wrap -mx-3 mb-4">
+                        <Field name="csrfToken" type="hidden" />
                         <div className="w-full px-3">
                           <label
                             className="block text-gray-800 text-sm font-medium mb-1"
@@ -141,4 +150,14 @@ export default function SignIn(): React.ReactElement {
       </main>
     </div>
   )
+}
+
+export async function getServerSideProps(
+  context: GetServerSidePropsContext
+): Promise<{ props: { csrfToken: string } }> {
+  return {
+    props: {
+      csrfToken: await getCsrfToken(context)
+    }
+  }
 }
