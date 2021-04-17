@@ -1,6 +1,8 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import NextAuth, { NextAuthOptions } from 'next-auth'
 import Providers from 'next-auth/providers'
+import { AxiosError } from 'axios'
+import api from '../../../config/api'
 
 const options: NextAuthOptions = {
   providers: [
@@ -18,7 +20,18 @@ const options: NextAuthOptions = {
         }
       },
       async authorize(credentials) {
-        const user = { name: 'Victor', email: 'victor@hotmail.com' } // Use API here
+        const user = await api
+          .post('/auth/signin', credentials)
+          .then(response => response.data)
+          // eslint-disable-next-line handle-callback-err
+          .catch((error: AxiosError) => {
+            // Handle errors here, send to form message
+          })
+
+        if (!user) {
+          return null
+        }
+
         return user
       }
     })

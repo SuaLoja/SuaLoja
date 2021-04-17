@@ -38,8 +38,8 @@ export default function SignIn({
                     csrfToken
                   }}
                   validationSchema={signinSchema}
-                  onSubmit={values => {
-                    axios.post('/api/auth/callback/sualoja', values)
+                  onSubmit={async values => {
+                    await axios.post('/api/auth/callback/sualoja', values)
                   }}
                 >
                   {({ errors, touched }) => (
