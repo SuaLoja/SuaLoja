@@ -1,7 +1,24 @@
 import React from 'react'
+import { GetServerSidePropsContext } from 'next'
+import { getCsrfToken, getSession, signIn } from 'next-auth/client'
+import { Field, Form, Formik } from 'formik'
+import * as yup from 'yup'
 import Header from '../components/Header'
+import Message, { MessageType } from '../components/Form/Message'
 
-export default function SignIn(): React.ReactElement {
+const signinSchema = yup.object().shape({
+  email: yup.string().email('Email inválido.').required('Campo obrigatório.'),
+  password: yup.string().required('Campo obrigatório.'),
+  csrfToken: yup.string()
+})
+
+export default function SignIn({
+  csrfToken,
+  error
+}: {
+  csrfToken: string
+  error: string
+}): React.ReactElement {
   return (
     <div className="flex flex-col min-h-screen overflow-hidden">
       <Header />
@@ -16,72 +33,98 @@ export default function SignIn(): React.ReactElement {
                 </h1>
               </div>
               <div className="max-w-sm mx-auto">
-                <form>
-                  <div className="flex flex-wrap -mx-3 mb-4">
-                    <div className="w-full px-3">
-                      <label
-                        className="block text-gray-800 text-sm font-medium mb-1"
-                        htmlFor="email"
-                      >
-                        Email
-                      </label>
-                      <input
-                        id="email"
-                        type="email"
-                        className="form-input w-full text-gray-800"
-                        placeholder="Digite seu email"
-                        required
-                      />
-                    </div>
-                  </div>
-                  <div className="flex flex-wrap -mx-3 mb-4">
-                    <div className="w-full px-3">
-                      <div className="flex justify-between">
-                        <label
-                          className="block text-gray-800 text-sm font-medium mb-1"
-                          htmlFor="password"
-                        >
-                          Senha
-                        </label>
-                        <a
-                          href="reset-password"
-                          className="text-sm font-medium text-blue-600 hover:underline"
-                        >
-                          Tendo problemas pra entrar?
-                        </a>
+                {error && <Message text={error} type={MessageType.error} />}
+                <Formik
+                  initialValues={{
+                    email: '',
+                    password: '',
+                    csrfToken
+                  }}
+                  validationSchema={signinSchema}
+                  onSubmit={async values => {
+                    signIn('sualoja', values)
+                  }}
+                >
+                  {({ errors, touched }) => (
+                    <Form>
+                      <div className="flex flex-wrap -mx-3 mb-4">
+                        <Field name="csrfToken" type="hidden" />
+                        <div className="w-full px-3">
+                          <label
+                            className="block text-gray-800 text-sm font-medium mb-1"
+                            htmlFor="email"
+                          >
+                            Email
+                          </label>
+                          <Field
+                            name="email"
+                            className="form-input w-full text-gray-800"
+                            placeholder="Digite seu email"
+                          />
+                          {errors.email && touched.email ? (
+                            <span className="text-red-600 text-sm">
+                              {errors.email}
+                            </span>
+                          ) : null}
+                        </div>
                       </div>
-                      <input
-                        id="password"
-                        type="password"
-                        className="form-input w-full text-gray-800"
-                        placeholder="Digite sua senha"
-                        required
-                      />
-                    </div>
-                  </div>
-                  <div className="flex flex-wrap -mx-3 mb-4">
-                    <div className="w-full px-3">
-                      <div className="flex justify-between">
-                        <label className="flex items-center">
-                          <input type="checkbox" className="form-checkbox" />
-                          <span className="text-gray-600 ml-2">
-                            Mantenha-me conectado
-                          </span>
-                        </label>
+                      <div className="flex flex-wrap -mx-3 mb-4">
+                        <div className="w-full px-3">
+                          <div className="flex justify-between">
+                            <label
+                              className="block text-gray-800 text-sm font-medium mb-1"
+                              htmlFor="password"
+                            >
+                              Senha
+                            </label>
+                            <a
+                              href="reset-password"
+                              className="text-sm font-medium text-blue-600 hover:underline"
+                            >
+                              Tendo problemas pra entrar?
+                            </a>
+                          </div>
+                          <Field
+                            name="password"
+                            type="password"
+                            className="form-input w-full text-gray-800"
+                            placeholder="Digite sua senha"
+                          />
+                          {errors.password && touched.password ? (
+                            <span className="text-red-600 text-sm">
+                              {errors.password}
+                            </span>
+                          ) : null}
+                        </div>
                       </div>
-                    </div>
-                  </div>
-                  <div className="flex flex-wrap -mx-3 mt-6">
-                    <div className="w-full px-3">
-                      <button
-                        className="btn text-white bg-blue-600 hover:bg-blue-700 w-full"
-                        type="button"
-                      >
-                        Entrar
-                      </button>
-                    </div>
-                  </div>
-                </form>
+                      <div className="flex flex-wrap -mx-3 mb-4">
+                        <div className="w-full px-3">
+                          <div className="flex justify-between">
+                            <label className="flex items-center">
+                              <input
+                                type="checkbox"
+                                className="form-checkbox"
+                              />
+                              <span className="text-gray-600 ml-2">
+                                Mantenha-me conectado
+                              </span>
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="flex flex-wrap -mx-3 mt-6">
+                        <div className="w-full px-3">
+                          <button
+                            className="btn text-white bg-blue-600 hover:bg-blue-700 w-full"
+                            type="submit"
+                          >
+                            Entrar
+                          </button>
+                        </div>
+                      </div>
+                    </Form>
+                  )}
+                </Formik>
                 <div className="flex items-center my-6">
                   <div
                     className="border-t border-gray-300 flex-grow mr-3"
@@ -110,4 +153,21 @@ export default function SignIn(): React.ReactElement {
       </main>
     </div>
   )
+}
+
+export async function getServerSideProps(
+  context: GetServerSidePropsContext
+): Promise<{ props: { csrfToken: string; error: string } }> {
+  const session = await getSession(context)
+
+  if (session) {
+    context.res.writeHead(307, { location: '/dashboard' }).end()
+  }
+
+  return {
+    props: {
+      csrfToken: await getCsrfToken(context),
+      error: context.query.error ? context.query.error.toString() : null
+    }
+  }
 }
