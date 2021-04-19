@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { AxiosError, AxiosResponse } from 'axios'
 import { Field, Form, Formik } from 'formik'
 import * as yup from 'yup'
-import Message from '../components/Form/Message'
+import Message, { MessageType } from '../components/Form/Message'
 import Header from '../components/Header'
 import api from '../config/api'
 
@@ -21,7 +21,7 @@ const signupSchema = yup.object().shape({
 
 export default function SignUp(): React.ReactElement {
   const [text, setText] = useState<string>()
-  const [color, setColor] = useState<string>()
+  const [type, setType] = useState<MessageType>()
 
   return (
     <div className="flex flex-col min-h-screen overflow-hidden">
@@ -35,7 +35,7 @@ export default function SignUp(): React.ReactElement {
                 <h1 className="h1">Crie sua conta gratuitamente.</h1>
               </div>
               <div className="max-w-sm mx-auto">
-                {text && color ? <Message text={text} color={color} /> : null}
+                {text && type ? <Message text={text} type={type} /> : null}
                 <Formik
                   initialValues={{
                     name: '',
@@ -48,13 +48,13 @@ export default function SignUp(): React.ReactElement {
                       .post('/auth/signup', values)
                       .then((response: AxiosResponse) => {
                         if (response.status === 201) {
-                          setColor('green')
+                          setType(MessageType.sucess)
                           setText('Conta criada com sucesso!')
                         }
                       })
                       .catch((error: AxiosError) => {
                         if (error.response.status === 409) {
-                          setColor('red')
+                          setType(MessageType.error)
                           setText('Uma conta com o mesmo email já existe.')
                         }
                       })
