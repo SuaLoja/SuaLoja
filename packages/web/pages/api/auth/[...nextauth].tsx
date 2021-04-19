@@ -1,7 +1,7 @@
+import { AxiosError } from 'axios'
 import { NextApiRequest, NextApiResponse } from 'next'
 import NextAuth, { NextAuthOptions } from 'next-auth'
 import Providers from 'next-auth/providers'
-import { AxiosError } from 'axios'
 import api from '../../../config/api'
 
 const options: NextAuthOptions = {
@@ -23,9 +23,12 @@ const options: NextAuthOptions = {
         const user = await api
           .post('/auth/signin', credentials)
           .then(response => response.data)
-          // eslint-disable-next-line handle-callback-err
           .catch((error: AxiosError) => {
-            // Handle errors here, send to form message
+            if (!error.response) {
+              throw new Error('Erro no servidor')
+            }
+
+            throw new Error(error.response.data.message)
           })
 
         if (!user) {
@@ -38,6 +41,10 @@ const options: NextAuthOptions = {
   ],
   session: {
     jwt: true
+  },
+  pages: {
+    signIn: '/signin',
+    error: '/signin'
   }
 }
 

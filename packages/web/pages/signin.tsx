@@ -1,9 +1,8 @@
 import React from 'react'
-import * as yup from 'yup'
-import { Field, Form, Formik } from 'formik'
-import { getCsrfToken } from 'next-auth/client'
 import { GetServerSidePropsContext } from 'next'
-import axios from 'axios'
+import { getCsrfToken, signIn } from 'next-auth/client'
+import { Field, Form, Formik } from 'formik'
+import * as yup from 'yup'
 import Header from '../components/Header'
 
 const signinSchema = yup.object().shape({
@@ -39,7 +38,7 @@ export default function SignIn({
                   }}
                   validationSchema={signinSchema}
                   onSubmit={async values => {
-                    await axios.post('/api/auth/callback/sualoja', values)
+                    signIn('sualoja', values)
                   }}
                 >
                   {({ errors, touched }) => (
