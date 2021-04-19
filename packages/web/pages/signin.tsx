@@ -1,9 +1,10 @@
 import React from 'react'
 import { GetServerSidePropsContext } from 'next'
-import { getCsrfToken, signIn } from 'next-auth/client'
+import { getCsrfToken, getSession, signIn } from 'next-auth/client'
 import { Field, Form, Formik } from 'formik'
 import * as yup from 'yup'
 import Header from '../components/Header'
+import Message, { MessageType } from '../components/Form/Message'
 
 const signinSchema = yup.object().shape({
   email: yup.string().email('Email inválido.').required('Campo obrigatório.'),
@@ -12,9 +13,11 @@ const signinSchema = yup.object().shape({
 })
 
 export default function SignIn({
-  csrfToken
+  csrfToken,
+  error
 }: {
   csrfToken: string
+  error: string
 }): React.ReactElement {
   return (
     <div className="flex flex-col min-h-screen overflow-hidden">
@@ -30,6 +33,7 @@ export default function SignIn({
                 </h1>
               </div>
               <div className="max-w-sm mx-auto">
+                {error && <Message text={error} type={MessageType.error} />}
                 <Formik
                   initialValues={{
                     email: '',
@@ -153,10 +157,17 @@ export default function SignIn({
 
 export async function getServerSideProps(
   context: GetServerSidePropsContext
-): Promise<{ props: { csrfToken: string } }> {
+): Promise<{ props: { csrfToken: string; error: string } }> {
+  const session = await getSession(context)
+
+  if (session) {
+    context.res.writeHead(307, { location: '/dashboard' }).end()
+  }
+
   return {
     props: {
-      csrfToken: await getCsrfToken(context)
+      csrfToken: await getCsrfToken(context),
+      error: context.query.error ? context.query.error.toString() : null
     }
   }
 }
