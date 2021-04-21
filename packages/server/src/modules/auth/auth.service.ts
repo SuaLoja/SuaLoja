@@ -1,19 +1,36 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common'
+import {
+  Injectable,
+  InternalServerErrorException,
+  UnauthorizedException
+} from '@nestjs/common'
+import { JwtService } from '@nestjs/jwt'
 import { InjectRepository } from '@nestjs/typeorm'
 import { SignInDTO } from './dto/signin.dto'
 import { SignUpDTO } from './dto/signup.dto'
 import { JwtPayload } from './interfaces/jwt-payload.interface'
+import { User } from './user.entity'
 import { UsersRepository } from './users.repository'
 
 @Injectable()
 export class AuthService {
   constructor(
     @InjectRepository(UsersRepository)
-    private usersRepository: UsersRepository
+    private usersRepository: UsersRepository,
+    private jwtSerivce: JwtService
   ) {}
 
-  signUp(signUpDto: SignUpDTO): Promise<void> {
-    return this.usersRepository.signUp(signUpDto)
+  async signUp(signUpDto: SignUpDTO): Promise<void> {
+    const user: Omit<
+      User,
+      'password' | 'salt'
+    > = await this.usersRepository.signUp(signUpDto)
+
+    try {
+      user.acessKey = this.jwtSerivce.sign({ id: user.id })
+      await user.save()
+    } catch (error) {
+      throw new InternalServerErrorException(error)
+    }
   }
 
   async signIn(signInDto: SignInDTO): Promise<JwtPayload> {

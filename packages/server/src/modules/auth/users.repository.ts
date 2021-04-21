@@ -8,7 +8,7 @@ import { User } from './user.entity'
 
 @EntityRepository(User)
 export class UsersRepository extends Repository<User> {
-  async signUp(signUpDTO: SignUpDTO): Promise<void> {
+  async signUp(signUpDTO: SignUpDTO): Promise<User> {
     const { name, email, password } = signUpDTO
 
     const user = new User()
@@ -19,6 +19,7 @@ export class UsersRepository extends Repository<User> {
 
     try {
       await user.save()
+      return user
     } catch (error) {
       if (error.code === '23505') {
         // duplicated email
