@@ -4,7 +4,7 @@ import { Field, Form, Formik } from 'formik'
 import * as yup from 'yup'
 import Message, { MessageType } from '../components/Form/Message'
 import Header from '../components/Header'
-import api from '../config/api'
+import api from '../services/api'
 
 const signupSchema = yup.object().shape({
   name: yup

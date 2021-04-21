@@ -2,7 +2,7 @@ import { AxiosError } from 'axios'
 import { NextApiRequest, NextApiResponse } from 'next'
 import NextAuth, { NextAuthOptions } from 'next-auth'
 import Providers from 'next-auth/providers'
-import api from '../../../config/api'
+import api from '../../../services/api'
 
 const options: NextAuthOptions = {
   providers: [
