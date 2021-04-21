@@ -7,6 +7,9 @@ export class User extends BaseEntity {
   id: string
 
   @Column()
+  acessKey: string
+
+  @Column()
   name: string
 
   @Column({
