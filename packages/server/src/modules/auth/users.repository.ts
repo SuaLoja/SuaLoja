@@ -17,17 +17,7 @@ export class UsersRepository extends Repository<User> {
     user.salt = await genSalt()
     user.password = await this.hashPassword(password, user.salt)
 
-    try {
-      await user.save()
-      return user
-    } catch (error) {
-      if (error.code === '23505') {
-        // duplicated email
-        throw new ConflictException('An user with same email already exists')
-      } else {
-        throw new InternalServerErrorException()
-      }
-    }
+    return user
   }
 
   async validateUserPassword(signInDTO: SignInDTO): Promise<JwtPayload> {

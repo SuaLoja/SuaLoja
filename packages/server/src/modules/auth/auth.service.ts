@@ -1,4 +1,5 @@
 import {
+  ConflictException,
   Injectable,
   InternalServerErrorException,
   UnauthorizedException
@@ -29,7 +30,12 @@ export class AuthService {
       user.acessKey = this.jwtSerivce.sign({ id: user.id })
       await user.save()
     } catch (error) {
-      throw new InternalServerErrorException(error)
+      if (error.code === '23505') {
+        // duplicated email
+        throw new ConflictException('An user with same email already exists')
+      } else {
+        throw new InternalServerErrorException(error)
+      }
     }
   }
 
