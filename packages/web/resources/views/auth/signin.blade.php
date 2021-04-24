@@ -10,6 +10,12 @@
                     </h1>
                 </div>
                 <div class="max-w-sm mx-auto">
+                    @if (session()->has('message'))
+                        <div class='text-center bg-red-500 mb-4 py-3 px-3 sm:px-6 lg:px-8 rounded'>
+                            <p class="font-medium text-white">{{ session('message') }}</p>
+                        </div>
+                    @endif
+
                     <form action={{ route('auth.signin') }} method="POST">
                         @csrf
 
