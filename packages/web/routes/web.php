@@ -13,4 +13,5 @@ Route::prefix('auth')->group(function () {
     Route::post('/signup', [SignupController::class, 'store']);
 
     Route::get('/signin', [SigninController::class, 'index'])->name('auth.signin');
+    Route::post('/signin', [SigninController::class, 'store']);
 });
