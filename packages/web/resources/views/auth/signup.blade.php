@@ -14,37 +14,52 @@
                         <div class="flex flex-wrap -mx-3 mb-4">
                             <div class="w-full px-3">
                                 <label class="block text-gray-800 text-sm font-medium mb-1">
-                                    Nome <span class="text-red-600">*</span>
+                                    Nome
                                 </label>
                                 <input name="name" type="text"
-                                    class="form-input w-full text-gray-800 px-3 py-2 pr-12 rounded border-gray-300 focus:ring-blue-500 focus:ring-opacity-50"
-                                    placeholder="Digite seu nome">
+                                    class="form-input w-full text-gray-800 px-3 py-2 pr-12 rounded border-gray-300 focus:ring-blue-500 focus:ring-opacity-50 @error('name') border-red-500 @enderror"
+                                    placeholder="Digite seu nome" value="{{ old('name') }}">
+                                @error('name')
+                                    <span class="text-red-600 text-sm">
+                                        {{ $message }}
+                                    </span>
+                                @enderror
                             </div>
                         </div>
                         <div class="flex flex-wrap -mx-3 mb-4">
                             <div class="w-full px-3">
                                 <label class="block text-gray-800 text-sm font-medium mb-1">
-                                    Email <span class="text-red-600">*</span>
+                                    Email
                                 </label>
                                 <input name="email" type="email"
-                                    class="form-input w-full text-gray-800 px-3 py-2 pr-12 rounded border-gray-300 focus:ring-blue-500 focus:ring-opacity-50"
-                                    placeholder="Digite seu email">
+                                    class="form-input w-full text-gray-800 px-3 py-2 pr-12 rounded border-gray-300 focus:ring-blue-500 focus:ring-opacity-50 @error('email') border-red-500 @enderror"
+                                    placeholder="Digite seu email" value="{{ old('email') }}">
+                                @error('email')
+                                    <span class="text-red-600 text-sm">
+                                        {{ $message }}
+                                    </span>
+                                @enderror
                             </div>
                         </div>
                         <div class="flex flex-wrap -mx-3 mb-4">
                             <div class="w-full px-3">
                                 <label class="block text-gray-800 text-sm font-medium mb-1">
-                                    Senha <span class="text-red-600">*</span>
+                                    Senha
                                 </label>
                                 <input name="password" type="password"
-                                    class="form-input w-full text-gray-800 px-3 py-2 pr-12 rounded border-gray-300 focus:ring-blue-500 focus:ring-opacity-50"
+                                    class="form-input w-full text-gray-800 px-3 py-2 pr-12 rounded border-gray-300 focus:ring-blue-500 focus:ring-opacity-50 @error('password') border-red-500 @enderror"
                                     placeholder="Digite sua senha">
+                                @error('password')
+                                    <span class="text-red-600 text-sm">
+                                        {{ $message }}
+                                    </span>
+                                @enderror
                             </div>
                         </div>
                         <div class="flex flex-wrap -mx-3 mb-4">
                             <div class="w-full px-3">
                                 <label class="block text-gray-800 text-sm font-medium mb-1">
-                                    Confirme sua senha <span class="text-red-600">*</span>
+                                    Confirme sua senha
                                 </label>
                                 <input name="password_confirmation" type="password"
                                     class="form-input w-full text-gray-800 px-3 py-2 pr-12 rounded border-gray-300 focus:ring-blue-500 focus:ring-opacity-50"
