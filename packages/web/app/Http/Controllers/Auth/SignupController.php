@@ -11,4 +11,9 @@ class SignupController extends Controller
     {
         return view('auth.signup');
     }
+
+    public function store(Request $request)
+    {
+        ddd($request);
+    }
 }

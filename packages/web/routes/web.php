@@ -10,6 +10,7 @@ Route::get('/', function () {
 
 Route::prefix('auth')->group(function () {
     Route::get('/signup', [SignupController::class, 'index'])->name('auth.signup');
+    Route::post('/signup', [SignupController::class, 'store']);
 
     Route::get('/signin', [SigninController::class, 'index'])->name('auth.signin');
 });

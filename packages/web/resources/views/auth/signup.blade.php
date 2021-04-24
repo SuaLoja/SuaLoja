@@ -8,7 +8,9 @@
                     <h1 class="h1">Crie sua conta gratuitamente.</h1>
                 </div>
                 <div class="max-w-sm mx-auto">
-                    <form>
+                    <form action={{ route('auth.signup') }} method="POST">
+                        @csrf
+
                         <div class="flex flex-wrap -mx-3 mb-4">
                             <div class="w-full px-3">
                                 <label class="block text-gray-800 text-sm font-medium mb-1">
@@ -51,7 +53,7 @@
                         </div>
                         <div class="flex flex-wrap -mx-3 mt-6">
                             <div class="w-full px-3">
-                                <button class="btn text-white bg-blue-600 hover:bg-blue-700 w-full" type="button">
+                                <button class="btn text-white bg-blue-600 hover:bg-blue-700 w-full" type="submit">
                                     Enviar
                                 </button>
                             </div>
