@@ -14,6 +14,9 @@ class SigninController extends Controller
 
     public function store(Request $request)
     {
-        ddd($request);
+        $this->validate($request, [
+            'email' => ['required', 'email'],
+            'password' => 'required',
+        ]);
     }
 }

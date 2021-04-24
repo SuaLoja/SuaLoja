@@ -19,8 +19,13 @@
                                     Email
                                 </label>
                                 <input name="email" type="email"
-                                    class="form-input w-full text-gray-800 px-3 py-2 pr-12 rounded border-gray-300 focus:ring-blue-500 focus:ring-opacity-50"
-                                    placeholder="Digite seu email" />
+                                    class="form-input w-full text-gray-800 px-3 py-2 pr-12 rounded border-gray-300 focus:ring-blue-500 focus:ring-opacity-50 @error('email') border-red-500 @enderror"
+                                    placeholder="Digite seu email" value="{{ old('email') }}">
+                                @error('email')
+                                    <span class="text-red-600 text-sm">
+                                        {{ $message }}
+                                    </span>
+                                @enderror
                             </div>
                         </div>
                         <div class="flex flex-wrap -mx-3 mb-4">
@@ -34,8 +39,13 @@
                                     </a>
                                 </div>
                                 <input name="password" type="password"
-                                    class="form-input w-full text-gray-800 px-3 py-2 pr-12 rounded border-gray-300 focus:ring-blue-500 focus:ring-opacity-50"
-                                    placeholder="Digite sua senha" />
+                                    class="form-input w-full text-gray-800 px-3 py-2 pr-12 rounded border-gray-300 focus:ring-blue-500 focus:ring-opacity-50 @error('password') border-red-500 @enderror"
+                                    placeholder="Digite sua senha">
+                                @error('password')
+                                    <span class="text-red-600 text-sm">
+                                        {{ $message }}
+                                    </span>
+                                @enderror
                             </div>
                         </div>
                         <div class="flex flex-wrap -mx-3 mb-4">
