@@ -67,7 +67,8 @@
                         <div class="border-t border-gray-300 flex-grow ml-3"></div>
                     </div>
                     <div class="text-gray-600 text-center mt-6">
-                        <a href="/signin" class="text-blue-600 hover:underline transition duration-150 ease-in-out">
+                        <a href="{{ route('auth.signin') }}"
+                            class="text-blue-600 hover:underline transition duration-150 ease-in-out">
                             Faça login
                         </a>
                         , caso já possuir uma conta.

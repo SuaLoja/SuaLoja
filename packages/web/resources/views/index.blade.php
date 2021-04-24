@@ -36,7 +36,7 @@
                         <div class="max-w-xs mx-auto sm:max-w-none sm:flex sm:justify-center">
                             <div>
                                 <a class="btn text-white bg-blue-600 hover:bg-blue-700 w-full mb-4 sm:w-auto sm:mb-0"
-                                    href="/signup">
+                                    href="{{ route('auth.signup') }}">
                                     Criar conta
                                 </a>
                             </div>

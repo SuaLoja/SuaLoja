@@ -64,7 +64,8 @@
                     </div>
                     <div class="text-gray-600 text-center mt-6">
                         Não possui uma conta?
-                        <a href="/signup" class="text-blue-600 hover:underline transition duration-150 ease-in-out">
+                        <a href="{{ route('auth.signup') }}"
+                            class="text-blue-600 hover:underline transition duration-150 ease-in-out">
                             Crie uma gratuitamente</a>.
                     </div>
                 </div>

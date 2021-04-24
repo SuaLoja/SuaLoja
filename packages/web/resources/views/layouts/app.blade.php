@@ -31,13 +31,14 @@
                     <nav class="flex flex-grow">
                         <ul class="flex flex-grow justify-end flex-wrap items-center">
                             <li>
-                                <a href="/signin"
+                                <a href="{{ route('auth.signin') }}"
                                     class="font-medium text-gray-600 hover:text-gray-900 px-5 py-3 flex items-center transition duration-150 ease-in-out">
                                     Login
                                 </a>
                             </li>
                             <li>
-                                <a href="/signup" class="btn-sm text-gray-200 bg-gray-900 hover:bg-gray-800 ml-3">
+                                <a href="{{ route('auth.signup') }}"
+                                    class="btn-sm text-gray-200 bg-gray-900 hover:bg-gray-800 ml-3">
                                     <span>Registrar-se</span>
                                     <svg class="w-3 h-3 fill-current text-gray-400 flex-shrink-0 ml-2 -mr-1"
                                         viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
