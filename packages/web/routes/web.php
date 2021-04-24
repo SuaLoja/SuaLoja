@@ -8,7 +8,7 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::prefix('auth')->group(function () {
+Route::prefix('auth')->middleware(['guest'])->group(function () {
     Route::get('/signup', [SignupController::class, 'index'])->name('auth.signup');
     Route::post('/signup', [SignupController::class, 'store']);
 
