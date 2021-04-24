@@ -24,6 +24,7 @@
     "postcss": "^8.1.14"
   },
   "dependencies": {
+    "@tailwindcss/forms": "^0.3.2",
     "tailwindcss": "^2.1.2"
   }
 }
