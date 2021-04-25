@@ -36,11 +36,6 @@
                                         Olá {{ auth()->user()->name }}!
                                     </p>
                                 </li>
-                                <li>
-                                    <a href="dashboard" class="btn-sm text-gray-200 bg-gray-900 hover:bg-gray-800 ml-3">
-                                        <span>Dashboard</span>
-                                    </a>
-                                </li>
                             @endauth
 
                             @guest
