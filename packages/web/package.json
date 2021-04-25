@@ -1,7 +1,6 @@
 {
-  "name": "@sualoja/dashboard",
+  "name": "@sualoja/web",
   "version": "1.0.0",
-  "main": ".eslintrc.js",
   "author": {
     "name": "vitogd",
     "email": "victorfelipe.guedes@hotmail.com"
