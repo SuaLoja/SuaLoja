@@ -17,10 +17,10 @@
                                     Nome
                                 </label>
                                 <input name="name" type="text"
-                                    class="form-input w-full text-gray-800 px-3 py-2 pr-12 rounded border-gray-300 focus:ring-blue-500 focus:ring-opacity-50 @error('name') border-red-500 @enderror"
-                                    placeholder="Digite seu nome" value="{{ old('name') }}">
+                                       class="form-input w-full text-gray-800 px-3 py-2 pr-12 rounded border-gray-300 focus:ring-blue-500 focus:ring-opacity-50 @error('name') border-red-500 @enderror"
+                                       placeholder="Digite seu nome" value="{{ old('name') }}">
                                 @error('name')
-                                    <span class="text-red-600 text-sm">
+                                <span class="text-red-600 text-sm">
                                         {{ $message }}
                                     </span>
                                 @enderror
@@ -32,10 +32,10 @@
                                     Email
                                 </label>
                                 <input name="email" type="email"
-                                    class="form-input w-full text-gray-800 px-3 py-2 pr-12 rounded border-gray-300 focus:ring-blue-500 focus:ring-opacity-50 @error('email') border-red-500 @enderror"
-                                    placeholder="Digite seu email" value="{{ old('email') }}">
+                                       class="form-input w-full text-gray-800 px-3 py-2 pr-12 rounded border-gray-300 focus:ring-blue-500 focus:ring-opacity-50 @error('email') border-red-500 @enderror"
+                                       placeholder="Digite seu email" value="{{ old('email') }}">
                                 @error('email')
-                                    <span class="text-red-600 text-sm">
+                                <span class="text-red-600 text-sm">
                                         {{ $message }}
                                     </span>
                                 @enderror
@@ -47,10 +47,10 @@
                                     Senha
                                 </label>
                                 <input name="password" type="password"
-                                    class="form-input w-full text-gray-800 px-3 py-2 pr-12 rounded border-gray-300 focus:ring-blue-500 focus:ring-opacity-50 @error('password') border-red-500 @enderror"
-                                    placeholder="Digite sua senha">
+                                       class="form-input w-full text-gray-800 px-3 py-2 pr-12 rounded border-gray-300 focus:ring-blue-500 focus:ring-opacity-50 @error('password') border-red-500 @enderror"
+                                       placeholder="Digite sua senha">
                                 @error('password')
-                                    <span class="text-red-600 text-sm">
+                                <span class="text-red-600 text-sm">
                                         {{ $message }}
                                     </span>
                                 @enderror
@@ -58,18 +58,28 @@
                         </div>
                         <div class="flex flex-wrap -mx-3 mb-4">
                             <div class="w-full px-3">
-                                <label class="block text-gray-800 text-sm font-medium mb-1">
-                                    Confirme sua senha
-                                </label>
-                                <input name="password_confirmation" type="password"
-                                    class="form-input w-full text-gray-800 px-3 py-2 pr-12 rounded border-gray-300 focus:ring-blue-500 focus:ring-opacity-50"
-                                    placeholder="Digite sua senha novamente">
+                                <div class="flex items-center space-x-2">
+                                    <label class="block text-gray-800 text-sm font-medium mb-1">
+                                        Nome da loja
+                                    </label>
+                                    <span class="block mb-1 text-xs font-normal text-blue-500">
+                                        Será o mesmo utilizado para a URL
+                                    </span>
+                                </div>
+                                <input name="store_name" type="text"
+                                       class="form-input w-full text-gray-800 px-3 py-2 pr-12 rounded border-gray-300 focus:ring-blue-500 focus:ring-opacity-50 @error('name') border-red-500 @enderror"
+                                       placeholder="Digite seu nome" value="{{ old('store_name') }}">
+                                @error('store_name')
+                                <span class="text-red-600 text-sm">
+                                        {{ $message }}
+                                    </span>
+                                @enderror
                             </div>
                         </div>
                         <div class="flex flex-wrap -mx-3 mt-6">
                             <div class="w-full px-3">
                                 <button class="btn text-white bg-blue-600 hover:bg-blue-700 w-full" type="submit">
-                                    Enviar
+                                    Registrar-se
                                 </button>
                             </div>
                         </div>
@@ -85,7 +95,7 @@
                     </div>
                     <div class="text-gray-600 text-center mt-6">
                         <a href="{{ route('auth.signin') }}"
-                            class="text-blue-600 hover:underline transition duration-150 ease-in-out">
+                           class="text-blue-600 hover:underline transition duration-150 ease-in-out">
                             Faça login
                         </a>
                         , caso já possuir uma conta.

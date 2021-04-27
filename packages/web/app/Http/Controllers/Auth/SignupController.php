@@ -19,13 +19,18 @@ class SignupController extends Controller
         $this->validate($request, [
             'name' => ['required', 'min:8', 'max:255'],
             'email' => ['required', 'email', 'max:255', 'unique:users,email'],
-            'password' => ['required', 'confirmed']
+            'password' => ['required'],
+            'store_name' => ['required', 'min:6']
         ]);
 
-        User::create([
+        $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password)
+        ]);
+
+        $user->store()->create([
+            'name' => $request->store_name,
         ]);
 
         return redirect()->route('auth.signin');
