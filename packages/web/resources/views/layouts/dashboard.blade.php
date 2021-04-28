@@ -59,12 +59,12 @@
                              style="display: none;" @click="open = false">
                             <div class="rounded-md ring-1 ring-black ring-opacity-5 py-1 bg-white">
                                 <!-- Authentication -->
-                                <form method="POST" action="#">
+                                <form method="POST" action="{{ route("auth.signout") }}">
                                     @csrf
-                                    <a class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out"
-                                       onclick="event.preventDefault(); this.closest('form').submit();">
-                                        Log out
-                                    </a>
+                                    <button class="block px-4 py-2 w-full text-left text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out"
+                                            type="submit">
+                                        Sair
+                                    </button>
                                 </form>
                             </div>
                         </div>
@@ -109,12 +109,12 @@
                 </div>
 
                 <div class="mt-3 space-y-1">
-                    <form method="POST" action="#">
+                    <form method="POST" action="{{ route("auth.signout") }}">
                         @csrf
-                        <a class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300 focus:outline-none focus:text-gray-800 focus:bg-gray-50 focus:border-gray-300 transition duration-150 ease-in-out"
-                           onclick="event.preventDefault(); this.closest('form').submit();">
-                            Log out
-                        </a>
+                        <button class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300 focus:outline-none focus:text-gray-800 focus:bg-gray-50 focus:border-gray-300 transition duration-150 ease-in-out"
+                                type="submit">
+                            Sair
+                        </button>
                     </form>
                 </div>
             </div>
