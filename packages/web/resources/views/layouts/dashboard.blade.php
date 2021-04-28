@@ -18,9 +18,17 @@
                 <div class="flex">
                     <div class="flex-shrink-0 flex items-center">
                         <a href="/dashboard">
-                            <svg viewBox="0 0 316 316" xmlns="http://www.w3.org/2000/svg"
-                                 class="block h-10 w-auto fill-current text-gray-600">
-                                <path d="M306 81l-1-1v-1h-1v-1l-53-30h-4l-52 30-1 1-1 1v1h-1v59l-43 25V53l-1-2v-1l-1-1h-1L94 19h-4L37 49h-1v1l-1 1v181l2 4 105 60 1 1a4 4 0 002 0h1v-1l105-60c2-1 3-2 3-4v-57l50-29 2-4V82v-1zM144 227l-43-24 45-27 51-29 43 25-32 19-64 36zm101-112v50l-19-11-25-14V90l18 10 26 15zm4-58l44 25-44 25-44-25 44-25zM114 184l-18 11V85l25-14 19-11v110l-26 14zM92 27l43 26-43 25-44-25 44-26zM44 60l18 11 25 14v118l1 1v1l1 1h1l50 29v50l-96-55V60zm201 170l-96 55v-50l71-41 25-14v50zm52-90l-44 25v-50l26-15 18-10v50z"/>
+                            <svg class="w-8 h-8" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <radialGradient cx="21.152%" cy="86.063%" fx="21.152%" fy="86.063%" r="79.941%"
+                                                    id="header-logo">
+                                        <stop stop-color="#4FD1C5" offset="0%"></stop>
+                                        <stop stop-color="#81E6D9" offset="25.871%"></stop>
+                                        <stop stop-color="#338CF5" offset="100%"></stop>
+                                    </radialGradient>
+                                </defs>
+                                <rect width="32" height="32" rx="16" fill="url(#header-logo)" fill-rule="nonzero">
+                                </rect>
                             </svg>
                         </a>
                     </div>
@@ -124,7 +132,7 @@
     <header class="bg-white shadow">
         <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
             <h2 class="font-normal text-xl text-gray-800 leading-tight">
-                Dashboard
+                {{ auth()->user()->store->name }}
             </h2>
         </div>
     </header>
