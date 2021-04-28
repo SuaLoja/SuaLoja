@@ -67,7 +67,7 @@
                                     </span>
                                 </div>
                                 <input name="store_name" type="text"
-                                       class="form-input w-full text-gray-800 px-3 py-2 pr-12 rounded border-gray-300 focus:ring-blue-500 focus:ring-opacity-50 @error('name') border-red-500 @enderror"
+                                       class="form-input w-full text-gray-800 px-3 py-2 pr-12 rounded border-gray-300 focus:ring-blue-500 focus:ring-opacity-50 @error('store_name') border-red-500 @enderror"
                                        placeholder="Digite seu nome" value="{{ old('store_name') }}">
                                 @error('store_name')
                                 <span class="text-red-600 text-sm">
