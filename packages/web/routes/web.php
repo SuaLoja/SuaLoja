@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\SigninController;
 use App\Http\Controllers\Auth\SignoutController;
 use App\Http\Controllers\Auth\SignupController;
+use App\Http\Controllers\Dashboard\ProductsController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,5 +24,7 @@ Route::prefix('auth')->middleware(['auth'])->group(function () {
 });
 
 Route::prefix('dashboard')->middleware(['auth'])->group(function () {
-    Route::get('/', [DashboardController::class, 'index']);
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
+
+    Route::get('/products', [ProductsController::class, 'index'])->name('dashboard.products');
 });
