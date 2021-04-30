@@ -66,7 +66,7 @@
                                         <a href="#"
                                            class="bg-indigo-100 text-indigo-600 hover:text-indigo-900 py-1 px-2 rounded">Visualizar</a>
                                         <a href="#/{{ $product->id }}"
-                                           class="bg-indigo-100 text-yellow-600 hover:text-yellow-900 py-1 px-2 rounded">Editar</a>
+                                           class="bg-yellow-100 text-yellow-600 hover:text-yellow-900 py-1 px-2 rounded">Editar</a>
                                         <a href="#/{{ $product->id }}"
                                            class="bg-red-100 text-red-600 hover:text-red-900 py-1 px-2 rounded">Excluir</a>
                                     </td>
