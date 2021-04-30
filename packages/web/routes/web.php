@@ -24,7 +24,12 @@ Route::prefix('auth')->middleware(['auth'])->group(function () {
 });
 
 Route::prefix('dashboard')->middleware(['auth'])->group(function () {
-    Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
-    Route::get('/products', [ProductsController::class, 'index'])->name('dashboard.products');
+    Route::prefix('products')->group(function () {
+        Route::get('/', [ProductsController::class, 'index'])->name('dashboard.products');
+
+        Route::get('/create', [ProductsController::class, 'create'])->name('dashboard.products.create');
+        Route::post('/create', [ProductsController::class, 'store']);
+    });
 });

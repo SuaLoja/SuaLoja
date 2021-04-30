@@ -7,7 +7,9 @@
 @section('content')
     <div>
         <div class="flex justify-end">
-            <a href="#" class="btn-sm bg-green-500 hover:bg-green-600 text-white text-right">Criar produto</a>
+            <a href="{{ route('dashboard.products.create')  }}"
+               class="btn-sm bg-green-500 hover:bg-green-600 text-white text-right">Criar produto
+            </a>
         </div>
         <div class="flex flex-col mt-2">
             <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
