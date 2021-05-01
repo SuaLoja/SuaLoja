@@ -24,7 +24,7 @@ class ProductsController extends Controller
     {
         $this->validate($request, [
             'title' => ['required', 'min:10, max:40'],
-            'description' => ['required', 'min:10, max:255'],
+            'description' => ['required', 'min:10', 'max:255'],
             'price' => ['required']
         ]);
 
