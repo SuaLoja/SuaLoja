@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -35,5 +36,12 @@ class ProductsController extends Controller
         ]);
 
         return redirect()->route('dashboard.products');
+    }
+
+    public function destroy(Product $product)
+    {
+        Auth::user()->store->products()->where('id', $product->id)->delete();
+
+        return back();
     }
 }

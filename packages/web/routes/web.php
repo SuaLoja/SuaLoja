@@ -31,5 +31,7 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
 
         Route::get('/create', [ProductsController::class, 'create'])->name('dashboard.products.create');
         Route::post('/create', [ProductsController::class, 'store']);
+
+        Route::delete('/delete/{product}', [ProductsController::class, 'destroy'])->name('dashboard.products.delete');
     });
 });

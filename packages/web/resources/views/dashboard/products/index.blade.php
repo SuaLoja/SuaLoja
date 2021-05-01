@@ -62,13 +62,26 @@
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                         R$ {{ $product->price }}
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-4">
-                                        <a href="#"
-                                           class="bg-indigo-100 text-indigo-600 hover:text-indigo-900 py-1 px-2 rounded">Visualizar</a>
-                                        <a href="#/{{ $product->id }}"
-                                           class="bg-yellow-100 text-yellow-600 hover:text-yellow-900 py-1 px-2 rounded">Editar</a>
-                                        <a href="#/{{ $product->id }}"
-                                           class="bg-red-100 text-red-600 hover:text-red-900 py-1 px-2 rounded">Excluir</a>
+                                    <td class="m-auto whitespace-nowrap text-right text-sm font-medium">
+                                        <div class="flex justify-end text-center space-x-4">
+                                            <a href="#"
+                                               class="bg-indigo-100 text-indigo-600 hover:text-indigo-900 py-1 px-2 rounded">
+                                                Visualizar
+                                            </a>
+                                            <a href="#/{{ $product->id }}"
+                                               class="bg-yellow-100 text-yellow-600 hover:text-yellow-900 py-1 px-2 rounded">
+                                                Editar
+                                            </a>
+                                            <form action="{{ route('dashboard.products.delete', $product) }}"
+                                                  method="post">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="bg-red-100 text-red-600 hover:text-red-900 py-1 px-2 rounded"
+                                                        type="submit">
+                                                    Excluir
+                                                </button>
+                                            </form>
+                                        </div>
                                     </td>
                                 </tr>
                             @endforeach
