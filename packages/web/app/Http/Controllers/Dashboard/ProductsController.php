@@ -20,6 +20,13 @@ class ProductsController extends Controller
         return view('dashboard.products.create');
     }
 
+    public function edit(Product $product)
+    {
+        return view('dashboard.products.edit', [
+            'product' => $product,
+        ]);
+    }
+
     public function store(Request $request)
     {
         $this->validate($request, [
@@ -34,6 +41,24 @@ class ProductsController extends Controller
             'description' => $request->description,
             'price' => floatval($request->price)
         ]);
+
+        return redirect()->route('dashboard.products');
+    }
+
+    public function update(Product $product, Request $request)
+    {
+        $this->validate($request, [
+            'title' => ['required', 'min:10, max:40'],
+            'description' => ['required', 'min:10', 'max:255'],
+            'price' => ['required']
+        ]);
+
+        $product->title = $request->title;
+        $product->slug = Str::slug($request->title);
+        $product->description = $request->description;
+        $product->price = floatval($request->price);
+
+        Auth::user()->store->products()->save($product);
 
         return redirect()->route('dashboard.products');
     }

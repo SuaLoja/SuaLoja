@@ -32,6 +32,9 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
         Route::get('/create', [ProductsController::class, 'create'])->name('dashboard.products.create');
         Route::post('/create', [ProductsController::class, 'store']);
 
+        Route::get('/edit/{product}', [ProductsController::class, 'edit'])->name('dashboard.products.edit');
+        Route::put('/edit/{product}', [ProductsController::class, 'update']);
+
         Route::delete('/delete/{product}', [ProductsController::class, 'destroy'])->name('dashboard.products.delete');
     });
 });
