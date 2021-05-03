@@ -1,19 +1,29 @@
 {
-  "name": "sualoja",
-  "version": "0.0.1",
+  "name": "@sualoja/web",
+  "version": "1.0.0",
   "author": {
     "name": "vitogd",
     "email": "victorfelipe.guedes@hotmail.com"
   },
   "license": "MIT",
   "private": true,
-  "workspaces": {
-    "packages": [
-      "packages/*"
-    ]
+  "scripts": {
+    "dev": "npm run development",
+    "development": "mix",
+    "watch": "mix watch",
+    "watch-poll": "mix watch -- --watch-options-poll=1000",
+    "hot": "mix watch --hot",
+    "prod": "npm run production",
+    "production": "mix --production"
   },
   "devDependencies": {
-    "typescript": "^4.2.4",
-    "@sualoja/eslint-config": "*"
+    "axios": "^0.21",
+    "laravel-mix": "^6.0.6",
+    "lodash": "^4.17.19",
+    "postcss": "^8.1.14"
+  },
+  "dependencies": {
+    "@tailwindcss/forms": "^0.3.2",
+    "tailwindcss": "^2.1.2"
   }
 }
