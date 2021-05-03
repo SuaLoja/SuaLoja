@@ -22,6 +22,12 @@ class ProductsController extends Controller
 
     public function edit(Product $product)
     {
+        $userHasProduct = boolval(Auth::user()->store->products()->where('id', $product->id)->first());
+
+        if (!$userHasProduct) {
+            return redirect()->to('dashboard');
+        }
+
         return view('dashboard.products.edit', [
             'product' => $product,
         ]);
@@ -47,6 +53,10 @@ class ProductsController extends Controller
 
     public function update(Product $product, Request $request)
     {
+        if (!Auth::user()->store->products()->where('id', $product->id)->get()) {
+            return redirect()->to('dashboard');
+        }
+
         $this->validate($request, [
             'title' => ['required', 'min:10, max:40'],
             'description' => ['required', 'min:10', 'max:255'],
