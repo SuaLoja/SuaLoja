@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\SigninController;
 use App\Http\Controllers\Auth\SignoutController;
 use App\Http\Controllers\Auth\SignupController;
+use App\Http\Controllers\Dashboard\ProductsController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,5 +24,17 @@ Route::prefix('auth')->middleware(['auth'])->group(function () {
 });
 
 Route::prefix('dashboard')->middleware(['auth'])->group(function () {
-    Route::get('/', [DashboardController::class, 'index']);
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+
+    Route::prefix('products')->group(function () {
+        Route::get('/', [ProductsController::class, 'index'])->name('dashboard.products');
+
+        Route::get('/create', [ProductsController::class, 'create'])->name('dashboard.products.create');
+        Route::post('/create', [ProductsController::class, 'store']);
+
+        Route::get('/edit/{product}', [ProductsController::class, 'edit'])->name('dashboard.products.edit');
+        Route::put('/edit/{product}', [ProductsController::class, 'update']);
+
+        Route::delete('/delete/{product}', [ProductsController::class, 'destroy'])->name('dashboard.products.delete');
+    });
 });

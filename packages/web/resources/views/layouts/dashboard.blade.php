@@ -33,9 +33,13 @@
                         </a>
                     </div>
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                        <a class="inline-flex items-center px-1 pt-1 border-b-2 border-blue-400 text-sm font-medium leading-5 text-gray-900 focus:outline-none focus:border-blue-700 transition duration-150 ease-in-out"
+                        <a class="inline-flex items-center px-1  @if(Route::is('dashboard.index')) pt-1 border-b-2 border-blue-400 @else pt-1/2 @endif text-sm font-medium leading-5 text-gray-900 focus:outline-none focus:border-blue-700 transition duration-150 ease-in-out"
                            href="/dashboard">
                             Dashboard
+                        </a>
+                        <a class="inline-flex items-center px-1 @if(Route::is('dashboard.products')) pt-1 border-b-2 border-blue-400 @else pt-1/2 @endif text-sm font-medium leading-5 text-gray-900 focus:outline-none focus:border-blue-700 transition duration-150 ease-in-out"
+                           href="{{ route('dashboard.products') }}">
+                            Produtos
                         </a>
                     </div>
                 </div>
@@ -99,6 +103,10 @@
                    href="/dashboard">
                     Dashboard
                 </a>
+                <a class="block pl-3 pr-4 py-2 text-base font-medium text-gray-700 bg-blue-50 focus:outline-none focus:text-blue-800 focus:bg-blue-100 focus:border-blue-700 transition duration-150 ease-in-out"
+                   href="{{ route('dashboard.products') }}">
+                    Produtos
+                </a>
             </div>
             <div class="pt-4 pb-1 border-t border-gray-200">
                 <div class="flex items-center px-4">
@@ -132,12 +140,22 @@
     <header class="bg-white shadow">
         <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
             <h2 class="font-normal text-xl text-gray-800 leading-tight">
-                {{ auth()->user()->store->name }}
+                @yield('page_name')
             </h2>
         </div>
     </header>
 
-    @yield('content')
+    <main>
+        <div class="py-12">
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                    <div class="p-6 bg-white border-b border-gray-200">
+                        @yield('content')
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
 </div>
 
 <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
