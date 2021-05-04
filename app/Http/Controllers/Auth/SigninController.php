@@ -21,7 +21,7 @@ class SigninController extends Controller
         ]);
 
         if (!Auth::attempt($request->only('email', 'password'), $request->remember)) {
-            return back()->with('message', 'Credenciais inválidas');
+            return back()->with('message', trans('auth.failed'));
         }
 
         return redirect('/');
