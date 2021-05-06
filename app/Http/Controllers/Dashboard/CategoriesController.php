@@ -45,27 +45,35 @@ class CategoriesController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function edit(Category $category)
     {
-        //
+        $userHasCategory = boolval(Auth::user()->store->categories()->where('id', $category->id)->first());
+
+        if (!$userHasCategory) {
+            return redirect()->to('dashboard');
+        }
+
+        return view('dashboard.categories.edit', [
+            'category' => $category,
+        ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function update(Request $request, Category $category)
     {
-        //
+        if (!Auth::user()->store->categories()->where('id', $category->id)->get()) {
+            return redirect()->to('dashboard');
+        }
+
+        $this->validate($request, [
+            'name' => ['required', 'max:20'],
+        ]);
+
+        $category->name = $request->name;
+        $category->slug = Str::slug($request->name);
+
+        Auth::user()->store->categories()->save($category);
+
+        return redirect()->route('dashboard.categories');
     }
 
     public function destroy(Category $category)

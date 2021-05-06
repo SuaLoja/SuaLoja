@@ -37,7 +37,7 @@
                                     </td>
                                     <td class="m-auto whitespace-nowrap text-right text-sm font-medium">
                                         <div class="flex justify-end text-center space-x-4">
-                                            <a href="{{ route('dashboard.categories', $category) }}"
+                                            <a href="{{ route('dashboard.categories.edit', $category) }}"
                                                class="bg-yellow-100 text-yellow-600 hover:text-yellow-900 py-1 px-2 rounded">
                                                 Editar
                                             </a>

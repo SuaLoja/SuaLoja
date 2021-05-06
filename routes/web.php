@@ -45,6 +45,9 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
         Route::get('/create', [CategoriesController::class, 'create'])->name('dashboard.categories.create');
         Route::post('/create', [CategoriesController::class, 'store']);
 
+        Route::get('/edit/{category}', [CategoriesController::class, 'edit'])->name('dashboard.categories.edit');
+        Route::put('/edit/{category}', [CategoriesController::class, 'update']);
+
         Route::delete('/delete/{category}', [CategoriesController::class, 'destroy'])->name('dashboard.categories.delete');
     });
 });
