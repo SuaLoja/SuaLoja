@@ -41,7 +41,7 @@
                                                class="bg-yellow-100 text-yellow-600 hover:text-yellow-900 py-1 px-2 rounded">
                                                 Editar
                                             </a>
-                                            <form action="{{ route('dashboard.categories', $category) }}"
+                                            <form action="{{ route('dashboard.categories.delete', $category) }}"
                                                   method="post">
                                                 @csrf
                                                 @method('DELETE')
