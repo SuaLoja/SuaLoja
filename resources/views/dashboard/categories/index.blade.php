@@ -7,7 +7,7 @@
 @section('content')
     <div>
         <div class="flex justify-end">
-            <a href="{{ route('dashboard.categories')  }}"
+            <a href="{{ route('dashboard.categories.create')  }}"
                class="btn-sm bg-green-500 hover:bg-green-600 text-white text-right">
                 Criar categoria
             </a>
@@ -32,8 +32,8 @@
                             <tbody class="bg-white divide-y divide-gray-200">
                             @foreach(auth()->user()->store->categories as $category)
                                 <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                        {{ $category }}
+                                    <td class="px-6 py-4 whitespace-nowrap text-medium text-gray-900">
+                                        {{ $category->name }}
                                     </td>
                                     <td class="m-auto whitespace-nowrap text-right text-sm font-medium">
                                         <div class="flex justify-end text-center space-x-4">

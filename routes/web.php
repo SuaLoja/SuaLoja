@@ -41,5 +41,8 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
 
     Route::prefix('categories')->group(function () {
         Route::get('/', [CategoriesController::class, 'index'])->name('dashboard.categories');
+
+        Route::get('/create', [CategoriesController::class, 'create'])->name('dashboard.categories.create');
+        Route::post('/create', [CategoriesController::class, 'store']);
     });
 });

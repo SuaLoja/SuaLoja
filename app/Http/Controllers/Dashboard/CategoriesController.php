@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class CategoriesController extends Controller
 {
@@ -12,25 +14,23 @@ class CategoriesController extends Controller
         return view('dashboard.categories.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('dashboard.categories.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => ['required', 'max:20'],
+        ]);
+
+        Auth::user()->store->categories()->create([
+            'name' => $request->name,
+            'slug' => Str::slug($request->name),
+        ]);
+
+        return redirect()->route('dashboard.categories');
     }
 
     /**
