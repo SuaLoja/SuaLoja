@@ -16,7 +16,7 @@
                             Nome
                         </label>
                         <input name="name" type="text"
-                               class="form-input w-full text-gray-800 px-3 py-2 pr-12 rounded border-gray-300 focus:ring-blue-500 focus:ring-opacity-50 @error('title') border-red-500 @enderror"
+                               class="form-input w-full text-gray-800 px-3 py-2 pr-12 rounded border-gray-300 focus:ring-blue-500 focus:ring-opacity-50 @error('name') border-red-500 @enderror"
                                value="{{ old('name') }}">
                         @error('name')
                         <span class="text-red-600 text-sm">
