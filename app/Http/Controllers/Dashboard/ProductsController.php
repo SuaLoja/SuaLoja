@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 class ProductsController extends Controller
 {
@@ -17,7 +19,14 @@ class ProductsController extends Controller
 
     public function create()
     {
-        return view('dashboard.products.create');
+        return view('dashboard.products.create', [
+            'categories' => Auth::user()->store
+                ->categories()
+                ->orderBy('name')
+                ->get()
+                ->map
+                ->only('id', 'name'),
+        ]);
     }
 
     public function edit(Product $product)
@@ -30,6 +39,12 @@ class ProductsController extends Controller
 
         return view('dashboard.products.edit', [
             'product' => $product,
+            'categories' => Auth::user()->store
+                ->categories()
+                ->orderBy('name')
+                ->get()
+                ->map
+                ->only('id', 'name'),
         ]);
     }
 
@@ -38,14 +53,16 @@ class ProductsController extends Controller
         $this->validate($request, [
             'title' => ['required', 'min:10, max:40'],
             'description' => ['required', 'min:10', 'max:255'],
-            'price' => ['required']
+            'price' => ['required'],
+            'category' => ['nullable'],
         ]);
 
         Auth::user()->store->products()->create([
             'title' => $request->title,
             'slug' => Str::slug($request->title),
             'description' => $request->description,
-            'price' => floatval($request->price)
+            'price' => floatval($request->price),
+            'category_id' => $request->category
         ]);
 
         return redirect()->route('dashboard.products');
@@ -60,13 +77,15 @@ class ProductsController extends Controller
         $this->validate($request, [
             'title' => ['required', 'min:10, max:40'],
             'description' => ['required', 'min:10', 'max:255'],
-            'price' => ['required']
+            'price' => ['required'],
+            'category' => ['nullable']
         ]);
 
         $product->title = $request->title;
         $product->slug = Str::slug($request->title);
         $product->description = $request->description;
         $product->price = floatval($request->price);
+        $product->category_id = $request->category;
 
         Auth::user()->store->products()->save($product);
 

@@ -33,13 +33,17 @@
                         </a>
                     </div>
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                        <a class="inline-flex items-center px-1  @if(Route::is('dashboard.index')) pt-1 border-b-2 border-blue-400 @else pt-1/2 @endif text-sm font-medium leading-5 text-gray-900 focus:outline-none focus:border-blue-700 transition duration-150 ease-in-out"
+                        <a class="inline-flex items-center px-1  @if(Route::is('dashboard')) pt-1 border-b-2 border-blue-400 @else pt-1/2 @endif text-sm font-medium leading-5 text-gray-900 focus:outline-none focus:border-blue-700 transition duration-150 ease-in-out"
                            href="/dashboard">
                             Dashboard
                         </a>
                         <a class="inline-flex items-center px-1 @if(Route::is('dashboard.products')) pt-1 border-b-2 border-blue-400 @else pt-1/2 @endif text-sm font-medium leading-5 text-gray-900 focus:outline-none focus:border-blue-700 transition duration-150 ease-in-out"
                            href="{{ route('dashboard.products') }}">
                             Produtos
+                        </a>
+                        <a class="inline-flex items-center px-1 @if(Route::is('dashboard.categories')) pt-1 border-b-2 border-blue-400 @else pt-1/2 @endif text-sm font-medium leading-5 text-gray-900 focus:outline-none focus:border-blue-700 transition duration-150 ease-in-out"
+                           href="{{ route('dashboard.categories') }}">
+                            Categorias
                         </a>
                     </div>
                 </div>
@@ -106,6 +110,10 @@
                 <a class="block pl-3 pr-4 py-2 text-base font-medium text-gray-700 bg-blue-50 focus:outline-none focus:text-blue-800 focus:bg-blue-100 focus:border-blue-700 transition duration-150 ease-in-out"
                    href="{{ route('dashboard.products') }}">
                     Produtos
+                </a>
+                <a class="block pl-3 pr-4 py-2 text-base font-medium text-gray-700 bg-blue-50 focus:outline-none focus:text-blue-800 focus:bg-blue-100 focus:border-blue-700 transition duration-150 ease-in-out"
+                       href="{{ route('dashboard.categories') }}">
+                    Categorias
                 </a>
             </div>
             <div class="pt-4 pb-1 border-t border-gray-200">
