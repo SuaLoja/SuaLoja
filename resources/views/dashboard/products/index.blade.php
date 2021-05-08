@@ -30,6 +30,10 @@
                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Preço
                                 </th>
+                                <th scope="col"
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Categoria
+                                </th>
                                 <th scope="col" class="relative px-6 py-3">
                                     <span class="sr-only">Editar</span>
                                     <span class="sr-only">Excluir</span>
@@ -61,6 +65,12 @@
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                         R$ {{ $product->price }}
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        <span
+                                           class="bg-gray-500 text-white min-w-20 py-1 px-2 rounded">
+                                            {{ $product->category->name }}
+                                        </span>
                                     </td>
                                     <td class="m-auto whitespace-nowrap text-right text-sm font-medium">
                                         <div class="flex justify-end text-center space-x-4">
