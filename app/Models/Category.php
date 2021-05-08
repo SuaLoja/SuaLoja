@@ -18,4 +18,9 @@ class Category extends Model
     {
         return $this->belongsTo(Store::class);
     }
+
+    public function category()
+    {
+        return $this->hasMany(Product::class);
+    }
 }

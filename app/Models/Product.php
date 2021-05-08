@@ -14,9 +14,16 @@ class Product extends Model
         'slug',
         'description',
         'price',
+        'category_id'
     ];
 
-    public function store() {
+    public function store()
+    {
         return $this->belongsTo(Store::class);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
     }
 }
