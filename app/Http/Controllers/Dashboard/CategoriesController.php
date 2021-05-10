@@ -34,22 +34,9 @@ class CategoriesController extends Controller
         return redirect()->route('dashboard.categories');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
     public function edit(Category $category)
     {
-        $userHasCategory = boolval(Auth::user()->store->categories()->where('id', $category->id)->first());
-
-        if (!$userHasCategory) {
+        if (Auth::user()->cannot('update', $category)) {
             return redirect()->to('dashboard');
         }
 
@@ -60,8 +47,8 @@ class CategoriesController extends Controller
 
     public function update(Request $request, Category $category)
     {
-        if (!Auth::user()->store->categories()->where('id', $category->id)->get()) {
-            return redirect()->to('dashboard');
+        if (Auth::user()->cannot('delete', $category)) {
+            abort(401);
         }
 
         $this->validate($request, [
@@ -78,6 +65,10 @@ class CategoriesController extends Controller
 
     public function destroy(Category $category)
     {
+        if (Auth::user()->cannot('delete', $category)) {
+            abort(401);
+        }
+
         Auth::user()->store->categories()->where('id', $category->id)->delete();
 
         return back();

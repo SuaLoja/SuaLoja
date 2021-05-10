@@ -3,12 +3,10 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
-use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
-use Illuminate\Validation\Rule;
 
 class ProductsController extends Controller
 {
@@ -31,9 +29,7 @@ class ProductsController extends Controller
 
     public function edit(Product $product)
     {
-        $userHasProduct = boolval(Auth::user()->store->products()->where('id', $product->id)->first());
-
-        if (!$userHasProduct) {
+        if (Auth::user()->cannot('update', $product)) {
             return redirect()->to('dashboard');
         }
 
@@ -70,8 +66,8 @@ class ProductsController extends Controller
 
     public function update(Product $product, Request $request)
     {
-        if (!Auth::user()->store->products()->where('id', $product->id)->get()) {
-            return redirect()->to('dashboard');
+        if (Auth::user()->cannot('delete', $product)) {
+            abort(401);
         }
 
         $this->validate($request, [
@@ -94,6 +90,10 @@ class ProductsController extends Controller
 
     public function destroy(Product $product)
     {
+        if (Auth::user()->cannot('delete', $product)) {
+            abort(401);
+        }
+
         Auth::user()->store->products()->where('id', $product->id)->delete();
 
         return back();
