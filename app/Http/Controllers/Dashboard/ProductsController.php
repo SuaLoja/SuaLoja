@@ -57,10 +57,6 @@ class ProductsController extends Controller
             'category' => ['nullable'],
         ]);
 
-        if ($request->category === "null") {
-            $request->category = null;
-        }
-
         Auth::user()->store->products()->create([
             'title' => $request->title,
             'slug' => Str::slug($request->title),
@@ -84,10 +80,6 @@ class ProductsController extends Controller
             'price' => ['required'],
             'category' => ['nullable']
         ]);
-
-        if ($request->category === "null") {
-            $request->category = null;
-        }
 
         $product->title = $request->title;
         $product->slug = Str::slug($request->title);
