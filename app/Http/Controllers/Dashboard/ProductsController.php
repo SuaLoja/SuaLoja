@@ -57,12 +57,16 @@ class ProductsController extends Controller
             'category' => ['nullable'],
         ]);
 
+        if ($request->category === "null") {
+            $request->category = null;
+        }
+
         Auth::user()->store->products()->create([
             'title' => $request->title,
             'slug' => Str::slug($request->title),
             'description' => $request->description,
             'price' => floatval($request->price),
-            'category_id' => $request->category
+            'category_id' => $request->category,
         ]);
 
         return redirect()->route('dashboard.products');
@@ -80,6 +84,10 @@ class ProductsController extends Controller
             'price' => ['required'],
             'category' => ['nullable']
         ]);
+
+        if ($request->category === "null") {
+            $request->category = null;
+        }
 
         $product->title = $request->title;
         $product->slug = Str::slug($request->title);
