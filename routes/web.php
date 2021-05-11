@@ -54,5 +54,6 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
 
     Route::prefix('settings')->group(function () {
         Route::get('/', [SettingsController::class, 'index'])->name('dashboard.settings');
+        Route::post('/', [SettingsController::class, 'store']);
     });
 });

@@ -11,7 +11,9 @@
                 <h3 class="text-lg font-medium leading-6 text-gray-900">Informações</h3>
             </div>
             <div class="mt-5 md:mt-0 md:col-span-2">
-                <form action="#" method="POST">
+                <form action="{{ route('dashboard.settings') }}" method="POST">
+                    @csrf
+
                     <div class="shadow sm:rounded-md sm:overflow-hidden">
                         <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
                             <div class="grid grid-cols-3 gap-6">
@@ -20,9 +22,14 @@
                                         Nome
                                     </label>
                                     <div class="mt-1 flex rounded-md shadow-sm">
-                                        <input type="text" name="name" placeholder="Nome da loja"
+                                        <input type="text" name="name" value="{{ old('name') ?? auth()->user()->store->name }}"
                                                class="form-input w-full text-gray-800 px-3 py-2 pr-12 rounded border-gray-300 focus:ring-blue-500 focus:ring-opacity-50">
                                     </div>
+                                    @error('name')
+                                    <span class="text-red-600 text-sm">
+                                            {{ $message }}
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
 
@@ -32,15 +39,12 @@
                                         URL
                                     </label>
                                     <div class="mt-1 flex rounded-md shadow-sm">
-                                        <input type="text" name="url" placeholder="Loja exemplo"
-                                               class="form-input w-full text-gray-800 px-3 py-2 pr-12 rounded border-gray-300 focus:ring-blue-500 focus:ring-opacity-50">
+                                        <input type="text" disabled value="{{ auth()->user()->store->url }}"
+                                               class="form-input w-full text-gray-400 px-3 py-2 pr-12 rounded border-gray-300 focus:ring-blue-500 focus:ring-opacity-50">
                                         <span class="inline-flex items-center px-3 rounded-r-md border border-l-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
                                             .sualoja.app
                                         </span>
                                     </div>
-                                    <label class="block text-gray-500 text-sm font-normal pl-1">
-                                        Os espaços serão substituidos por traços.
-                                    </label>
                                 </div>
                             </div>
                         </div>
