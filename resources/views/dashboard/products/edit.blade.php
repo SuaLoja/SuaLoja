@@ -64,7 +64,8 @@
                                 border-gray-300 focus:ring-blue-500 focus:ring-opacity-50">
                             <option value={{ null }}></option>
                             @foreach($categories as $category)
-                                <option value="{{ $category["id"] }}">
+                                <option value="{{ $category["id"] }}"
+                                        @if($product->category->id === $category["id"]) selected @endif>
                                     {{ $category["name"] }}
                                 </option>
                             @endforeach
