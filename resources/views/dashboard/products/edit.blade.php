@@ -65,7 +65,7 @@
                             <option value={{ null }}></option>
                             @foreach($categories as $category)
                                 <option value="{{ $category["id"] }}"
-                                        @if($product->category->id === $category["id"]) selected @endif>
+                                        @if($product->category && $product->category->id === $category["id"]) selected @endif>
                                     {{ $category["name"] }}
                                 </option>
                             @endforeach
