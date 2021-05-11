@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\SignoutController;
 use App\Http\Controllers\Auth\SignupController;
 use App\Http\Controllers\Dashboard\CategoriesController;
 use App\Http\Controllers\Dashboard\ProductsController;
+use App\Http\Controllers\Dashboard\SettingsController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
@@ -49,5 +50,9 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
         Route::put('/edit/{category}', [CategoriesController::class, 'update']);
 
         Route::delete('/delete/{category}', [CategoriesController::class, 'destroy'])->name('dashboard.categories.delete');
+    });
+
+    Route::prefix('settings')->group(function () {
+        Route::get('/', [SettingsController::class, 'index'])->name('dashboard.settings');
     });
 });

@@ -48,6 +48,10 @@
                            href="{{ route('dashboard.categories') }}">
                             Categorias
                         </a>
+                        <a class="inline-flex items-center px-1 @if(Route::is('dashboard.settings')) pt-1 border-b-2 border-blue-400 @else pt-1/2 @endif text-sm font-medium leading-5 text-gray-900 focus:outline-none focus:border-blue-700 transition duration-150 ease-in-out"
+                           href="{{ route('dashboard.settings') }}">
+                            Configurações
+                        </a>
                     </div>
                 </div>
                 <div class="hidden sm:flex sm:items-center sm:ml-6">
@@ -123,6 +127,12 @@
                         focus:bg-blue-100 focus:border-blue-700 transition duration-150 ease-in-out"
                    href="{{ route('dashboard.categories') }}">
                     Categorias
+                </a>
+                <a class="block pl-3 pr-4 py-2 @if(Route::is('dashboard.settings')) border-l-4 border-blue-400 text-blue-700 bg-blue-100
+                        @else text-gray-700 bg-blue-50 @endif text-base font-medium focus:outline-none focus:text-blue-800
+                        focus:bg-blue-100 focus:border-blue-700 transition duration-150 ease-in-out"
+                   href="{{ route('dashboard.settings') }}">
+                    Configurações
                 </a>
             </div>
             <div class="pt-4 pb-1 border-t border-gray-200">
