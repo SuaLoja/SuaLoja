@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class ProductsController extends Controller
@@ -51,13 +52,20 @@ class ProductsController extends Controller
             'description' => ['required', 'min:10', 'max:255'],
             'price' => ['required'],
             'category' => ['nullable'],
+            'image' => ['required', 'mimes:jpg,png,jpeg', 'max:5048']
         ]);
+
+        $image = Storage::putFile(
+            'images/products',
+            $request->file('image')
+        );
 
         Auth::user()->store->products()->create([
             'title' => $request->title,
             'slug' => Str::slug($request->title),
             'description' => $request->description,
             'price' => floatval($request->price),
+            'image_path' => 'storage/' . $image,
             'category_id' => $request->category,
         ]);
 
