@@ -82,8 +82,18 @@ class ProductsController extends Controller
             'title' => ['required', 'min:10, max:40'],
             'description' => ['required', 'min:10', 'max:255'],
             'price' => ['required'],
-            'category' => ['nullable']
+            'category' => ['nullable'],
+            'image' => ['nullable', 'mimes:jpg,png,jpeg', 'max:5048']
         ]);
+
+        if ($request->file('image')) {
+            $image = Storage::putFile(
+                'images/products',
+                $request->file('image')
+            );
+
+            $product->image_path = 'storage/' . $image;
+        }
 
         $product->title = $request->title;
         $product->slug = Str::slug($request->title);
