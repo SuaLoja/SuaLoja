@@ -45,10 +45,12 @@
                                 <tr>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <div class="flex items-center">
-                                            <div class="flex-shrink-0 h-10 w-10">
-                                                <img class="h-10 w-10 rounded-full"
-                                                     src="https://via.placeholder.com/150"
-                                                     alt="">
+                                            <div class="flex-shrink-0 h-25 w-25">
+                                                <a href="{{ asset($product->image_path) }}" target="_blank">
+                                                    <img class="h-10 rounded object-contain"
+                                                         src="{{ asset($product->image_path) }}"
+                                                         alt="Imagem do produto">
+                                                </a>
                                             </div>
                                             <div class="ml-4">
                                                 <div class="text-sm font-medium text-gray-900">

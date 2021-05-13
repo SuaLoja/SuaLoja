@@ -6,7 +6,7 @@
 
 @section('content')
     <div>
-        <form action="{{ route('dashboard.products.create') }}" method="post">
+        <form action="{{ route('dashboard.products.create') }}" method="post" enctype="multipart/form-data">
             @csrf
 
             <div class="flex flex-col mt-2">
@@ -68,6 +68,21 @@
                                 </option>
                             @endforeach
                         </select>
+                    </div>
+                </div>
+                <div class="flex flex-wrap -mx-3 mb-4">
+                    <div class="w-full px-3">
+                        <label class="block text-gray-800 text-sm font-medium mb-1">
+                            Imagem
+                        </label>
+                        <input name="image" type="file"
+                               class="form-input w-full text-gray-800 px-3 py-2 pr-12 rounded border-gray-300 focus:ring-blue-500 focus:ring-opacity-50 @error('image') border-red-500 @enderror"
+                               value="{{ old('image') }}">
+                        @error('image')
+                        <span class="text-red-600 text-sm">
+                            {{ $message }}
+                        </span>
+                        @enderror
                     </div>
                 </div>
             </div>
