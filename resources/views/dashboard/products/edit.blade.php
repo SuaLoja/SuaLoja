@@ -75,6 +75,21 @@
                 <div class="flex flex-wrap -mx-3 mb-4">
                     <div class="w-full px-3">
                         <label class="block text-gray-800 text-sm font-medium mb-1">
+                            Quantidade em estoque
+                        </label>
+                        <input name="quantity_in_stock" type="number"
+                               class="form-input w-full text-gray-800 px-3 py-2 pr-12 rounded border-gray-300 focus:ring-blue-500 focus:ring-opacity-50 @error('quantity_in_stock') border-red-500 @enderror"
+                               value="{{ old('quantity_in_stock') ?? $product->quantity_in_stock }}">
+                        @error('quantity_in_stock')
+                        <span class="text-red-600 text-sm">
+                            {{ $message }}
+                        </span>
+                        @enderror
+                    </div>
+                </div>
+                <div class="flex flex-wrap -mx-3 mb-4">
+                    <div class="w-full px-3">
+                        <label class="block text-gray-800 text-sm font-medium mb-1">
                             Imagem atual
                         </label>
                         <div class="flex justify-center items-center flex-shrink-0 h-30 w-30">

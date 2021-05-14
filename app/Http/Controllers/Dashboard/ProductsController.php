@@ -52,7 +52,8 @@ class ProductsController extends Controller
             'description' => ['required', 'min:10', 'max:255'],
             'price' => ['required'],
             'category' => ['nullable'],
-            'image' => ['required', 'mimes:jpg,png,jpeg', 'max:5048']
+            'image' => ['required', 'mimes:jpg,png,jpeg', 'max:5048'],
+            'quantity_in_stock' => ['required']
         ]);
 
         $image = Storage::putFile(
@@ -66,6 +67,7 @@ class ProductsController extends Controller
             'description' => $request->description,
             'price' => floatval($request->price),
             'image_path' => 'storage/' . $image,
+            'quantity_in_stock' => $request->quantity_in_stock,
             'category_id' => $request->category,
         ]);
 
@@ -83,7 +85,8 @@ class ProductsController extends Controller
             'description' => ['required', 'min:10', 'max:255'],
             'price' => ['required'],
             'category' => ['nullable'],
-            'image' => ['nullable', 'mimes:jpg,png,jpeg', 'max:5048']
+            'image' => ['nullable', 'mimes:jpg,png,jpeg', 'max:5048'],
+            'quantity_in_stock' => ['required']
         ]);
 
         if ($request->file('image')) {
@@ -99,6 +102,7 @@ class ProductsController extends Controller
         $product->slug = Str::slug($request->title);
         $product->description = $request->description;
         $product->price = floatval($request->price);
+        $product->quantity_in_stock = $request->quantity_in_stock;
         $product->category_id = $request->category;
 
         Auth::user()->store->products()->save($product);
