@@ -14,6 +14,11 @@ class Store extends Model
         'url'
     ];
 
+    public function getRouteKeyName()
+    {
+        return 'url';
+    }
+
     public function products()
     {
         return $this->hasMany(Product::class);
