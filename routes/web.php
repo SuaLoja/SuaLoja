@@ -7,6 +7,7 @@ use App\Http\Controllers\Dashboard\CategoriesController;
 use App\Http\Controllers\Dashboard\ProductsController;
 use App\Http\Controllers\Dashboard\SettingsController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\StoreController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -57,3 +58,7 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
         Route::post('/', [SettingsController::class, 'store']);
     });
 });
+
+// TODO: Move store routes to a wildcard subdomain
+
+Route::get('{store}', [StoreController::class, 'show']);
