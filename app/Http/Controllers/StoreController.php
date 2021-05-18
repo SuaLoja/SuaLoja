@@ -7,8 +7,10 @@ use Illuminate\Http\Request;
 
 class StoreController extends Controller
 {
-    public function show(Request $request, Store $store)
+    public function show(Store $store)
     {
-        ddd($store);
+        return view('store.index', [
+            'store' => $store,
+        ]);
     }
 }
