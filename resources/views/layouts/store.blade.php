@@ -54,6 +54,13 @@
     @yield('content')
 </main>
 
+{{-- Start divider --}}
+<div class="divide-y-2">
+    <div>&nbsp;</div>
+    <div>&nbsp;</div>
+</div>
+{{-- End divider --}}
+
 {{-- Start footer --}}
 <footer class="flex justify-center items-center">
     <div class="grid grid-cols-3 py-8 auto-cols-max max-w-6xl">

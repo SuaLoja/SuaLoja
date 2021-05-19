@@ -108,11 +108,4 @@
         </div>
     </div>
     {{-- End featured product --}}
-
-    {{-- Start divider --}}
-    <div class="divide-y">
-        <div>&nbsp;</div>
-        <div>&nbsp;</div>
-    </div>
-    {{-- End divider --}}
 @endsection
