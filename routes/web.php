@@ -61,4 +61,9 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
 
 // TODO: Move store routes to a wildcard subdomain
 
-Route::get('{store}', [StoreController::class, 'show']);
+Route::prefix('{store}')->group(function () {
+    Route::get('/', [StoreController::class, 'index']);
+
+    Route::get('/products', [StoreController::class, 'showProducts']);
+});
+
