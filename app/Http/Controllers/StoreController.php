@@ -22,6 +22,13 @@ class StoreController extends Controller
         ]);
     }
 
+    public function allCategories(Store $store)
+    {
+        return view('store.categories', [
+            'store' => $store,
+        ]);
+    }
+
     public function showProduct(Store $store, Product $product)
     {
         return view('store.product', [

@@ -67,5 +67,7 @@ Route::prefix('{store}')->group(function () {
     Route::get('/products', [StoreController::class, 'allProducts']);
 
     Route::get('/product/{product}', [StoreController::class, 'showProduct']);
+
+    Route::get('/categories', [StoreController::class, 'allCategories']);
 });
 
