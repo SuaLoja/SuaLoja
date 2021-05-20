@@ -15,13 +15,13 @@
     <div>
         <ul class="flex flex-row space-x-4 uppercase text-xs font-medium tracking-wider">
             <li>
-                <a href="{{ $store->url }}">Home</a>
+                <a href="/{{ $store->url }}">Home</a>
             </li>
             <li>
-                <a href="{{ $store->url . "/products" }}">Produtos</a>
+                <a href="/{{ $store->url . "/products" }}">Produtos</a>
             </li>
             <li class="flex flex-row justify-center items-center space-x-1">
-                <a href="{{ $store->url . "/categories" }}">Categorias</a>
+                <a href="/{{ $store->url . "/categories" }}">Categorias</a>
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
                      stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
@@ -109,13 +109,13 @@
             <h3 class="h3 text-lg uppercase mb-6">Rodapé</h3>
             <ul class="flex flex-col space-x-4 uppercase text-sm font-medium tracking-wider">
                 <li>
-                    <a href="{{ $store->url }}">Home</a>
+                    <a href="/{{ $store->url }}">Home</a>
                 </li>
                 <li>
-                    <a href="{{ $store->url . "/products" }}">Produtos</a>
+                    <a href="/{{ $store->url . "/products" }}">Produtos</a>
                 </li>
                 <li>
-                    <a href="{{ $store->url . "/categories" }}">Categorias</a>
+                    <a href="/{{ $store->url . "/categories" }}">Categorias</a>
                 </li>
             </ul>
         </div>
