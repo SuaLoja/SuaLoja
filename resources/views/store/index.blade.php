@@ -69,25 +69,29 @@
     <div class="w-full h-full flex justify-center items-center">
         <div class="grid grid-cols-2 max-w-6xl justify-center items-center space-x-6">
             <div class="flex flex-col justify-center items-center">
-                <img src="https://img.oncartx.io/unsafe/768x768/https://cdn.oncartx.io/static/products_images/59/75/72/1592580315.jpg"
+                <img src="{{ asset($featured_product->image_path) }}"
                      alt="Imagem do produto" class="object-contain h-[24rem]">
                 <div class="mt-4 flex flex-row space-x-4">
-                    <button class="w-24 h-32 border-2 border-gray-500 bg-cover" style="background-image:
-                            url('https://img.oncartx.io/unsafe/120x0/https://cdn.oncartx.io/static/products_images/59/75/72/1592580315.jpg')">
+                    <button class="w-24 h-32 border-2 border-black bg-center bg-contain bg-no-repeat"
+                            style="background-image:
+                                    url('{{ asset($featured_product->image_path) }}')">
                     </button>
-                    <button class="w-24 h-32 border-2 border-gray-500 bg-cover" style="background-image:
-                            url('https://img.oncartx.io/unsafe/120x0/https://cdn.oncartx.io/static/products_images/96/77/11/1592580352.jpg')">
+                    <button class="w-24 h-32 border-2 border-gray-200 bg-center bg-contain bg-no-repeat" style="background-image:
+                            url('https://via.placeholder.com/768x768')">
                     </button>
                 </div>
             </div>
             <div class="flex flex-col space-y-2 justify-center items-left">
-                <h1 class="h1 text-2xl">Espelho Rosé</h1>
+                <h1 class="h1 text-2xl">{{ $featured_product->title }}</h1>
                 <div class="py-2 space-y-2">
                     <div class="flex space-x-2 font-normal">
-                        <h2 class="h2 text-xl text-blue-500">R$ 179,90</h2>
-                        <h2 class="h2 text-xl line-through">R$ 259,90</h2>
+                        <h2 class="h2 text-xl text-blue-500">R$ {{ $featured_product->price }}</h2>
+                        {{-- <h2 class="h2 text-xl line-through">R$ 259,90</h2>--}}
                     </div>
-                    <h2 class="h1 text-xl font-bold">6X DE R$ 33,29</h2>
+                    <h2 class="h1 text-xl font-bold uppercase">
+                        Apenas {{ $featured_product->quantity_in_stock }}
+                        {{ Str::plural('unidade', $featured_product->quantity_in_stock) }} disponiveis!
+                    </h2>
                 </div>
                 <div>
                     <div class="divide-y-2">
@@ -101,7 +105,7 @@
                     inventore ipsam iste natus neque quas! Adipisci architecto beatae dolore eum minus possimus
                     praesentium sed, sunt voluptatem?
                 </p>
-                <a href="#" class="py-3">
+                <a href="/{{ $store->url }}/product/{{ $featured_product->slug }}" class="py-3">
                     <button class="btn rounded-full bg-blue-500 text-left text-white uppercase w-64">Visualizar</button>
                 </a>
             </div>

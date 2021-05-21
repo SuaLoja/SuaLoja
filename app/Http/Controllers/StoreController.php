@@ -12,6 +12,7 @@ class StoreController extends Controller
     {
         return view('store.index', [
             'store' => $store,
+            'featured_product' => Product::orderBy('quantity_in_stock')->first()
         ]);
     }
 
@@ -19,6 +20,7 @@ class StoreController extends Controller
     {
         return view('store.products', [
             'store' => $store,
+            'products' => $store->products()->simplePaginate(9),
         ]);
     }
 
@@ -26,6 +28,7 @@ class StoreController extends Controller
     {
         return view('store.categories', [
             'store' => $store,
+            'categories' => $store->categories()->simplePaginate(9),
         ]);
     }
 
