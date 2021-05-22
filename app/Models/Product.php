@@ -19,6 +19,11 @@ class Product extends Model
         'category_id'
     ];
 
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
     public function store()
     {
         return $this->belongsTo(Store::class);
