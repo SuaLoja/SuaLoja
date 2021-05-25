@@ -46,9 +46,9 @@
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <div class="flex items-center">
                                             <div class="flex-shrink-0 h-25 w-25">
-                                                <a href="{{ asset($product->image_path) }}" target="_blank">
+                                                <a href="{{ asset($product->images[0]->image_path) }}" target="_blank">
                                                     <img class="h-10 rounded object-contain"
-                                                         src="{{ asset($product->image_path) }}"
+                                                         src="{{ asset($product->images[0]->image_path) }}"
                                                          alt="Imagem do produto">
                                                 </a>
                                             </div>
@@ -80,7 +80,7 @@
                                     </td>
                                     <td class="m-auto whitespace-nowrap text-right text-sm font-medium">
                                         <div class="flex justify-end text-center space-x-4">
-                                            <a href="#"
+                                            <a href="/{{ auth()->user()->store->url }}/product/{{ $product->slug }}"
                                                class="bg-indigo-100 text-indigo-600 hover:text-indigo-900 py-1 px-2 rounded">
                                                 Visualizar
                                             </a>

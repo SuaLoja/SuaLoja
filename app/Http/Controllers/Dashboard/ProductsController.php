@@ -52,24 +52,32 @@ class ProductsController extends Controller
             'description' => ['required', 'min:10', 'max:255'],
             'price' => ['required'],
             'category' => ['nullable'],
-            'image' => ['required', 'mimes:jpg,png,jpeg', 'max:5048'],
+            'images' => ['required', 'max:5'],
+            'images.*' => ['mimes:jpg,png,jpeg', 'max:5048'],
             'quantity_in_stock' => ['required']
+        ], [
+            'images.max' => 'Você só pode escolher até 5 imagens para o produto.'
         ]);
 
-        $image = Storage::putFile(
-            'images/products',
-            $request->file('image')
-        );
-
-        Auth::user()->store->products()->create([
+        $product = Auth::user()->store->products()->create([
             'title' => $request->title,
             'slug' => Str::slug($request->title),
             'description' => $request->description,
             'price' => floatval($request->price),
-            'image_path' => 'storage/' . $image,
             'quantity_in_stock' => $request->quantity_in_stock,
             'category_id' => $request->category,
         ]);
+
+        foreach ($request->images as $image) {
+            $imagePath = Storage::putFile(
+                'images/products/' . $product->id,
+                $image
+            );
+
+            $product->images()->create([
+                'image_path' => 'storage/' . $imagePath
+            ]);
+        }
 
         return redirect()->route('dashboard.products');
     }
@@ -85,17 +93,27 @@ class ProductsController extends Controller
             'description' => ['required', 'min:10', 'max:255'],
             'price' => ['required'],
             'category' => ['nullable'],
-            'image' => ['nullable', 'mimes:jpg,png,jpeg', 'max:5048'],
+            'images' => ['nullable', 'max:5'],
+            'images.*' => ['mimes:jpg,png,jpeg', 'max:5048'],
             'quantity_in_stock' => ['required']
+        ], [
+            'images.max' => 'Você só pode escolher até 5 imagens para o produto.'
         ]);
 
-        if ($request->file('image')) {
-            $image = Storage::putFile(
-                'images/products',
-                $request->file('image')
-            );
+        if ($request->images) {
+            $product->images()->delete();
+            Storage::deleteDirectory('images/products/' . $product->id);
 
-            $product->image_path = 'storage/' . $image;
+            foreach ($request->images as $image) {
+                $imagePath = Storage::putFile(
+                    'images/products/' . $product->id,
+                    $image
+                );
+
+                $product->images()->create([
+                    'image_path' => 'storage/' . $imagePath
+                ]);
+            }
         }
 
         $product->title = $request->title;

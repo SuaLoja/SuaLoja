@@ -4,15 +4,14 @@
     <div class="w-full h-full flex justify-center items-center">
         <div class="grid grid-cols-2 max-w-6xl justify-center items-center space-x-6">
             <div class="flex flex-col justify-center items-center">
-                <img src="{{ asset($product->image_path) }}"
+                <img src="{{ asset($product->images[0]->image_path) }}"
                      alt="Imagem do produto" class="object-contain h-[24rem] w-[384px]">
                 <div class="mt-4 flex flex-row space-x-4">
-                    <button class="w-24 h-32 border-2 border-black bg-center bg-contain bg-no-repeat"
-                            style="background-image: url('{{ asset($product->image_path) }}')">
-                    </button>
-                    <button class="w-24 h-32 border-2 border-gray-200 bg-center bg-contain bg-no-repeat"
-                            style="background-image: url('https://via.placeholder.com/768x768')">
-                    </button>
+                    @foreach($product->images as $image)
+                        <button class="w-24 h-32 border-2 @if($loop->iteration === 1) border-black @else  border-gray-200 @endif bg-center bg-contain bg-no-repeat"
+                                style="background-image: url('{{ asset($image->image_path) }}')">
+                        </button>
+                    @endforeach
                 </div>
             </div>
             <div class="flex flex-col space-y-2 justify-center items-left">

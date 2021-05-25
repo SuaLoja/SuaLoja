@@ -90,23 +90,32 @@
                 <div class="flex flex-wrap -mx-3 mb-4">
                     <div class="w-full px-3">
                         <label class="block text-gray-800 text-sm font-medium mb-1">
-                            Imagem atual
+                            Imagens atuais
                         </label>
                         <div class="flex justify-center items-center flex-shrink-0 h-30 w-30">
-                            <img class="object-contain w-full h-48 rounded" src="{{ asset($product->image_path) }}"
-                                 alt="Imagem do produto">
+                            @foreach($product->images as $image)
+                                <img class="object-contain w-full h-48 rounded" src="{{  asset($image->image_path) }}"
+                                     alt="Imagem do produto">
+                            @endforeach
                         </div>
                     </div>
                 </div>
                 <div class="flex flex-wrap -mx-3 mb-4 flex-col">
                     <div class="w-full px-3">
-                        <label class="block text-gray-800 text-sm font-medium mb-1">
-                            Selecione uma nova
-                        </label>
-                        <input name="image" type="file"
-                               class="form-input w-full text-gray-800 px-3 py-2 pr-12 rounded border-gray-300 focus:ring-blue-500 focus:ring-opacity-50 @error('image') border-red-500 @enderror"
-                               value="{{ old('image') }}">
-                        @error('image')
+                        <div class="flex items-center space-x-2">
+                            <label class="block text-gray-800 text-sm font-medium mb-1">
+                                Selecione novas imagens
+                            </label>
+                            <span class="text-blue-500 text-xs">Irá sobescrever as outras imagens</span>
+                        </div>
+                        <input name="images[]" type="file" multiple
+                               class="form-input w-full text-gray-800 px-3 py-2 pr-12 rounded border-gray-300 focus:ring-blue-500 focus:ring-opacity-50 @error('image') border-red-500 @enderror">
+                        @error('images.*')
+                        <span class="inline text-red-600 text-sm">
+                            {{ $message }}
+                        </span>
+                        @enderror
+                        @error('images')
                         <span class="text-red-600 text-sm">
                             {{ $message }}
                         </span>
