@@ -12,7 +12,7 @@
                 @foreach($products as $product)
                     <a href="/{{ $store->url  }}/product/{{ $product->slug }}">
                         <div class="px-10 py-3 w-[400px] h-[400px]">
-                            <img src="{{ asset($product->image_path) }}"
+                            <img src="{{ asset($product->images[0]->image_path) }}"
                                  alt="Imagem do produto" class="w-[300px] h-[300px] object-contain bg-no-repeat">
                             <div class="mt-4">
                                 <h3 class="h3 text-lg font-thin">{{ $product->title }}</h3>
