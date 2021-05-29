@@ -3,74 +3,53 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Dashboard\AuthorizeUserRequest;
+use App\Http\Requests\Dashboard\Categories\CreateCategoryRequest;
+use App\Http\Requests\Dashboard\Categories\UpdateCategoryRequest;
 use App\Models\Category;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Response;
 
 class CategoriesController extends Controller
 {
     public function index()
     {
-        return view('dashboard.categories.index');
+        return Response::view('dashboard.categories.index');
     }
 
     public function create()
     {
-        return view('dashboard.categories.create');
+        return Response::view('dashboard.categories.create');
     }
 
-    public function store(Request $request)
+    public function store(CreateCategoryRequest $request)
     {
-        $this->validate($request, [
-            'name' => ['required', 'max:20'],
-        ]);
+        Auth::user()->store->categories()->create($request->validated());
 
-        Auth::user()->store->categories()->create([
-            'name' => $request->name,
-            'slug' => Str::slug($request->name),
-        ]);
-
-        return redirect()->route('dashboard.categories');
+        return Redirect::route('dashboard.categories');
     }
 
-    public function edit(Category $category)
+    public function edit(AuthorizeUserRequest $request, Category $category)
     {
-        if (Auth::user()->cannot('update', $category)) {
-            return redirect()->to('dashboard');
-        }
-
-        return view('dashboard.categories.edit', [
+        return Response::view('dashboard.categories.edit', [
             'category' => $category,
         ]);
     }
 
-    public function update(Request $request, Category $category)
+    public function update(UpdateCategoryRequest $request, Category $category)
     {
-        if (Auth::user()->cannot('delete', $category)) {
-            abort(401);
-        }
-
-        $this->validate($request, [
-            'name' => ['required', 'max:20'],
-        ]);
-
         $category->name = $request->name;
-        $category->slug = Str::slug($request->name);
 
         Auth::user()->store->categories()->save($category);
 
-        return redirect()->route('dashboard.categories');
+        return Redirect::route('dashboard.categories');
     }
 
-    public function destroy(Category $category)
+    public function destroy(AuthorizeUserRequest $request, Category $category)
     {
-        if (Auth::user()->cannot('delete', $category)) {
-            abort(401);
-        }
-
         Auth::user()->store->categories()->where('id', $category->id)->delete();
 
-        return back();
+        return Redirect::back();
     }
 }

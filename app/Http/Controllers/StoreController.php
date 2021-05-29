@@ -4,13 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\Store;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
 
 class StoreController extends Controller
 {
     public function index(Store $store)
     {
-        return view('store.index', [
+        return Response::view('store.index', [
             'store' => $store,
             'featured_product' => Product::orderBy('quantity_in_stock')->first()
         ]);
@@ -18,7 +18,7 @@ class StoreController extends Controller
 
     public function allProducts(Store $store)
     {
-        return view('store.products', [
+        return Response::view('store.products', [
             'store' => $store,
             'products' => $store->products()->simplePaginate(9),
         ]);
@@ -26,7 +26,7 @@ class StoreController extends Controller
 
     public function allCategories(Store $store)
     {
-        return view('store.categories', [
+        return Response::view('store.categories', [
             'store' => $store,
             'categories' => $store->categories()->simplePaginate(9),
         ]);
@@ -34,7 +34,7 @@ class StoreController extends Controller
 
     public function showProduct(Store $store, Product $product)
     {
-        return view('store.product', [
+        return Response::view('store.product', [
             'store' => $store,
             'product' => $product
         ]);

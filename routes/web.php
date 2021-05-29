@@ -35,10 +35,10 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
         Route::get('/create', [ProductsController::class, 'create'])->name('dashboard.products.create');
         Route::post('/create', [ProductsController::class, 'store']);
 
-        Route::get('/edit/{product}', [ProductsController::class, 'edit'])->name('dashboard.products.edit');
-        Route::put('/edit/{product}', [ProductsController::class, 'update']);
+        Route::get('/edit/{product:id}', [ProductsController::class, 'edit'])->name('dashboard.products.edit');
+        Route::put('/edit/{product:id}', [ProductsController::class, 'update']);
 
-        Route::delete('/delete/{product}', [ProductsController::class, 'destroy'])->name('dashboard.products.delete');
+        Route::delete('/delete/{product:id}', [ProductsController::class, 'destroy'])->name('dashboard.products.delete');
     });
 
     Route::prefix('categories')->group(function () {
@@ -47,10 +47,10 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
         Route::get('/create', [CategoriesController::class, 'create'])->name('dashboard.categories.create');
         Route::post('/create', [CategoriesController::class, 'store']);
 
-        Route::get('/edit/{category}', [CategoriesController::class, 'edit'])->name('dashboard.categories.edit');
-        Route::put('/edit/{category}', [CategoriesController::class, 'update']);
+        Route::get('/edit/{category:id}', [CategoriesController::class, 'edit'])->name('dashboard.categories.edit');
+        Route::put('/edit/{category:id}', [CategoriesController::class, 'update']);
 
-        Route::delete('/delete/{category}', [CategoriesController::class, 'destroy'])->name('dashboard.categories.delete');
+        Route::delete('/delete/{category:id}', [CategoriesController::class, 'destroy'])->name('dashboard.categories.delete');
     });
 
     Route::prefix('settings')->group(function () {

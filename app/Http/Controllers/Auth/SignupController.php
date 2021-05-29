@@ -2,28 +2,23 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Requests\Auth\SignupRequest;
 use App\Models\User;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Str;
 
 class SignupController extends Controller
 {
     public function index()
     {
-        return view('auth.signup');
+        return Response::view('auth.signup');
     }
 
-    public function store(Request $request)
+    public function store(SignupRequest $request)
     {
-        $this->validate($request, [
-            'name' => ['required', 'min:8', 'max:255'],
-            'email' => ['required', 'email', 'max:255', 'unique:users,email'],
-            'password' => ['required'],
-            'store_name' => ['required', 'max:15']
-        ]);
-
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -35,6 +30,6 @@ class SignupController extends Controller
             'url' => Str::slug($request->store_name),
         ]);
 
-        return redirect()->route('auth.signin');
+        return Redirect::route('auth.signin');
     }
 }

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Product extends Model
 {
@@ -22,6 +23,13 @@ class Product extends Model
     public function getRouteKeyName()
     {
         return 'slug';
+    }
+
+    protected static function booted()
+    {
+        static::saving(function ($product) {
+            $product->slug = Str::slug($product->title);
+        });
     }
 
     public function store()
