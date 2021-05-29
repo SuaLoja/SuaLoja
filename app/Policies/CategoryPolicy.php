@@ -10,13 +10,8 @@ class CategoryPolicy
 {
     use HandlesAuthorization;
 
-    public function update(User $user, Category $category)
+    public function access(User $user, Category $category)
     {
-        return $user->store->id === $category->store_id;
-    }
-
-    public function delete(User $user, Category $category)
-    {
-        return $user->store->id === $category->store_id;
+        return $user->store->is($category->store);
     }
 }

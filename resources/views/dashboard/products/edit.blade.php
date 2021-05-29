@@ -59,7 +59,7 @@
                         <label class="block text-gray-800 text-sm font-medium mb-1">
                             Categoria
                         </label>
-                        <select name="category"
+                        <select name="category_id"
                                 class="form-select w-full text-gray-800 px-3 py-2 pr-12 rounded
                                 border-gray-300 focus:ring-blue-500 focus:ring-opacity-50">
                             <option value={{ null }}></option>

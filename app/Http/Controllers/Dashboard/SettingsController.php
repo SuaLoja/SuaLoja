@@ -3,27 +3,22 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\Dashboard\Settings\UpdateSettingsRequest;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Response;
 
 class SettingsController extends Controller
 {
     public function index()
     {
-        return view('dashboard.settings.index');
+        return Response::view('dashboard.settings.index');
     }
 
-    public function store(Request $request)
+    public function store(UpdateSettingsRequest $request)
     {
-        $this->validate($request, [
-            'name' => ['required', 'max:15'],
-        ]);
-        
-        Auth::user()->store->update([
-            'name' => $request->name,
-        ]);
+        Auth::user()->store->update($request->validated());
 
-        return back();
+        return Redirect::back();
     }
 }

@@ -10,13 +10,8 @@ class ProductPolicy
 {
     use HandlesAuthorization;
 
-    public function update(User $user, Product $product)
+    public function access(User $user, Product $product)
     {
-        return $user->store->id === $product->store_id;
-    }
-
-    public function delete(User $user, Product $product)
-    {
-        return $user->store->id === $product->store_id;
+        return $user->store->is($product->store);
     }
 }

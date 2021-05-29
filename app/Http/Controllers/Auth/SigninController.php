@@ -3,27 +3,24 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\Auth\SigninRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Response;
 
 class SigninController extends Controller
 {
     public function index()
     {
-        return view('auth.signin');
+        return Response::view('auth.signin');
     }
 
-    public function store(Request $request)
+    public function store(SigninRequest $request)
     {
-        $this->validate($request, [
-            'email' => ['required', 'email'],
-            'password' => 'required',
-        ]);
-
         if (!Auth::attempt($request->only('email', 'password'), $request->remember)) {
             return back()->with('message', trans('auth.failed'));
         }
 
-        return redirect('/');
+        return Redirect::to('/');
     }
 }

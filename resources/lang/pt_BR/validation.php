@@ -161,6 +161,8 @@ return [
         'username' => 'usuário',
         'year' => 'ano',
         'store_name' => 'nome da loja',
-        'price' => 'preço'
+        'price' => 'preço',
+        'quantity_in_stock' => 'quantidade em estoque',
+        'images' => 'imagens'
     ],
 ];
