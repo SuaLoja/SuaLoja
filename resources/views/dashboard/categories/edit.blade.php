@@ -24,6 +24,11 @@
                             {{ $message }}
                         </span>
                         @enderror
+                        @if(session()->has('error'))
+                            <span class="text-red-600 text-sm">
+                            {{ session('error') }}
+                        </span>
+                        @endif
                     </div>
                 </div>
             </div>
