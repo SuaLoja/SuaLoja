@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use Illuminate\Validation\ValidationException;
+use function PHPUnit\Framework\isNull;
 
 class Product extends Model
 {
@@ -28,7 +30,14 @@ class Product extends Model
     protected static function booted()
     {
         static::saving(function ($product) {
-            $product->slug = Str::slug($product->title);
+            $slug = Str::slug($product->title);
+            $slugExists = !!$product->store->products()->where('slug', $slug)->first();
+
+            if ($slugExists) {
+                $slug .= '-' . Str::random(9);
+            }
+
+            $product->slug = $slug;
         });
     }
 
