@@ -64,10 +64,6 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
 Route::prefix('{store}')->group(function () {
     Route::get('/', [StoreController::class, 'index']);
 
-    Route::get('/products', [StoreController::class, 'allProducts']);
-
-    Route::get('/product/{product}', [StoreController::class, 'showProduct']);
-
-    Route::get('/categories', [StoreController::class, 'allCategories']);
+    Route::get('/product/{product}', [StoreController::class, 'show']);
 });
 

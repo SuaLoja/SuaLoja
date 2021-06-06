@@ -1,112 +1,80 @@
 @extends('layouts.store', [ 'store' => $store ])
 
 @section('content')
-    {{-- Start store banner --}}
-    <div style="background-size: auto; background: linear-gradient(0deg, rgba(0, 0, 0, .4), rgba(0, 0, 0, .4)),
-    url('https://img.oncartx.io/unsafe/1500x0/https://cdn.oncartx.io/static/theme_images/ac/ac/da/10128_5972951841.jpg') no-repeat top;"
-         class="h-96 flex justify-center items-center flex-col shadow-inner text-white divide-y-2 text-center">
-        <h1 class="h1 mb-2">Título da loja</h1>
-        <div>
-            <h3 class="h3 font-thin">Subtitulo</h3>
-            <div class="mt-4">
-                <a href="{{ $store->url . '/products' }}">
-                    <button class="btn-sm uppercase bg-opacity-30 bg-black font-thin text-sm text-white border-2 border-white hover:bg-opacity-50">
-                        Conheça nossos produtos
-                    </button>
-                </a>
-            </div>
-        </div>
-    </div>
-    {{-- End store banner --}}
-
-    {{-- Start features card --}}
-    <div class="my-2">
-        <div class="flex justify-center items-center">
-            <div class="w-[50vw] flex flex-row">
-                <img src="https://img.oncartx.io/unsafe/1024x0/https://cdn.oncartx.io/static/theme_images/ac/ac/da/10128_4502119298.jpg"
-                     class="object-cover"
-                     alt="Feature 1"
-                >
-            </div>
-            <div class="w-[50vw] flex justify-center items-center text-left">
-                <div class="max-w-md">
-                    <h1 class="h1 font-medium uppercase text-2xl">Soluções modernas</h1>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores atque beatae debitis
-                        deleniti, dolor doloribus ducimus eaque.
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="flex justify-center items-center">
-            <div class="w-[50vw] flex justify-center items-center text-left">
-                <div class="max-w-md">
-                    <h1 class="h1 font-medium uppercase text-2xl">Alta Qualidade</h1>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores atque beatae debitis
-                        deleniti, dolor doloribus ducimus eaque.
-                    </p>
-                </div>
-            </div>
-            <div class="w-[50vw] flex flex-row">
-                <img src="https://img.oncartx.io/unsafe/1024x0/https://cdn.oncartx.io/static/theme_images/ac/ac/da/10128_2557822519.jpg"
-                     class="object-cover"
-                     alt="Feature 1"
-                >
-            </div>
-        </div>
-    </div>
-    {{-- End features card --}}
-
-    {{-- Start divider --}}
-    <div class="divide-y">
-        <div>&nbsp;</div>
-        <div>&nbsp;</div>
-    </div>
-    {{-- End divider --}}
-
-    {{-- Start featured product --}}
-    <div class="w-full h-full flex justify-center items-center">
-        <div class="grid grid-cols-2 max-w-6xl justify-center items-center space-x-6">
-            <div class="flex flex-col justify-center items-center">
-                <img src="{{ asset($featured_product->images[0]->image_path) }}"
-                     alt="Imagem do produto" class="object-contain h-[24rem]">
-                <div class="mt-4 flex flex-row space-x-4">
-                    @foreach($featured_product->images as $image)
-                        <button class="w-24 h-32 border-2 @if($loop->iteration === 1) border-black @else border-gray-200 @endif bg-center bg-contain bg-no-repeat"
-                                style="background-image:
-                                        url('{{ asset($image->image_path) }}')">
-                        </button>
-                    @endforeach
-                </div>
-            </div>
-            <div class="flex flex-col space-y-2 justify-center items-left">
-                <h1 class="h1 text-2xl">{{ $featured_product->title }}</h1>
-                <div class="py-2 space-y-2">
-                    <div class="flex space-x-2 font-normal">
-                        <h2 class="h2 text-xl text-blue-500">R$ {{ $featured_product->price }}</h2>
-                        {{-- <h2 class="h2 text-xl line-through">R$ 259,90</h2>--}}
-                    </div>
-                    <h2 class="h1 text-xl font-bold uppercase">
-                        Apenas {{ $featured_product->quantity_in_stock }}
-                        {{ Str::plural('unidade', $featured_product->quantity_in_stock) }} disponiveis!
-                    </h2>
-                </div>
-                <div>
-                    <div class="divide-y-2">
-                        <div>&nbsp;</div>
-                        <h3 class="h3 font-medium text-base py-2 uppercase">Detalhes do produto</h3>
-                        <div>&nbsp;</div>
-                    </div>
-                </div>
-                <p class="text-gray-700">
-                    {{ $featured_product->description }}
+    {{-- Start banner --}}
+    <div class='flex justify-center items-center'>
+        <div class='grid grid-cols-2 max-w-4xl'>
+            <img
+                    src='https://picsum.photos/1920/1080'
+                    alt='Banner image'
+                    class='w-96 h-96 object-cover'>
+            <div class='flex flex-col justify-center items-center text-left'>
+                <p class='text-xl'>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquid aspernatur, consequatur debitis
+                    delectus earum expedita laboriosam laudantium magnam non nulla numquam, officiis pariatur porro
+                    provident saepe sed sequi vel.
                 </p>
-                <a href="/{{ $store->url }}/product/{{ $featured_product->slug }}" class="py-3">
-                    <button class="btn rounded-full bg-blue-500 text-left text-white uppercase w-64">Visualizar</button>
-                </a>
             </div>
         </div>
     </div>
-    {{-- End featured product --}}
+    {{-- End banner--}}
+
+    {{-- Start products grid--}}
+    <h1 class='h1 text-3xl font-medium w-full text-center my-6' id='products'>Produtos</h1>
+
+    <div class='grid grid-cols-3 max-w-7xl flex-none px-24 justify-center'>
+        <div class='flex flex-col'>
+            <h3 class='h3 text-xl font-bold' id='categories'>Categorias</h3>
+            <ul class='mt-4 space-y-2 font-thin text-gray-700'>
+                <li>
+                    <a href='/{{ $store->url }}'
+                       class='@if (!Request::query('category_id')) font-bold text-blue-500 @endif'
+                    >
+                        Todas
+                    </a>
+                </li>
+                @foreach($categories as $category)
+                    <li>
+                        <a href='?category_id={{ $category->id }}'
+                           class='@if (Request::query('category_id') == $category->id) font-bold text-blue-500 @endif'>
+                            {{ $category->name }}
+                        </a>
+                    </li>
+                @endforeach
+            </ul>
+        </div>
+
+        <div class='col-span-2 flex justify-between'>
+            @if(!$products->count())
+                <h3 class='h3 text-xl font-normal'>
+                    Nenhum produto encontrado!
+                </h3>
+            @endif
+            <div class='grid grid-cols-3 grid-flow-row gap-4'>
+                @foreach($products as $product)
+                    <a href='/{{ $store->url }}/product/{{ $product->slug }}'>
+                        <div class='flex flex-col hover:ring-2 hover:ring-gray-200 p-2 transition-all duration-150'>
+                            <img src='/{{ $product->images[0]->image_path }}' alt=''>
+                            <div>
+                                <p class='h-20'>{{ $product->title }}</p>
+                                <div class='flex justify-between items-center'>
+                                    <p class='text-gray-700 text-sm'>
+                                        {{ $product->quantity_in_stock }} unidade(s)
+                                    </p>
+                                    <p class='text-base font-medium text-gray-800'>
+                                        R$ {{ $product->price }}
+                                    </p>
+                                </div>
+                                <button class="btn-sm text-white bg-blue-600 hover:bg-blue-500 w-full my-2">
+                                    Visualizar
+                                </button>
+                            </div>
+                        </div>
+                    </a>
+                @endforeach
+            </div>
+            {{ $products->links() }}
+        </div>
+    </div>
+    {{-- End products grid--}}
 @endsection

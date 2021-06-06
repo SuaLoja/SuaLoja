@@ -40,7 +40,7 @@
                     </h2>
                 @endif
                 <a href="#" class="py-3">
-                    <button class="btn rounded-full bg-blue-500 text-left text-white uppercase w-64">
+                    <button class="btn text-white bg-blue-600 hover:bg-blue-500 w-full my-2 uppercase w-64">
                         Contatar vendedor
                     </button>
                 </a>

@@ -18,26 +18,15 @@
                 <a href="/{{ $store->url }}">Home</a>
             </li>
             <li>
-                <a href="/{{ $store->url . "/products" }}">Produtos</a>
+                <a href="/{{ $store->url }}#products">Produtos</a>
             </li>
-            <li class="flex flex-row justify-center items-center space-x-1">
-                <a href="/{{ $store->url . "/categories" }}">Categorias</a>
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
-                     stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                </svg>
+            <li>
+                <a href="/{{ $store->url }}#categories">Categorias</a>
             </li>
         </ul>
     </div>
     <h4 class="h4 uppercase font-medium text-2xl">{{ $store->name }}</h4>
     <div class="flex items-center justify-end space-x-2">
-        <div class="cursor-pointer px-2 py-2">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
-                 stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-            </svg>
-        </div>
         <div class="border-2 border-white px-4 py-2 flex items-center justify-center space-x-2 cursor-pointer">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
                  stroke="currentColor">
@@ -55,10 +44,7 @@
 </main>
 
 {{-- Start divider --}}
-<div class="divide-y-2">
-    <div>&nbsp;</div>
-    <div>&nbsp;</div>
-</div>
+<hr />
 {{-- End divider --}}
 
 {{-- Start footer --}}
@@ -76,7 +62,7 @@
             <h1 class="h1 font-medium text-2xl uppercase">{{ $store->name }}</h1>
             <div class="mt-4">
                 <ul class="flex flex-col justify-center items-center">
-                    <li class="flex flex-row justify-center items-center space-x-2">
+                    <li class="flex flex-row items-center justify-between w-32 space-x-2 ">
                         <span class="text-md text-gray-700">Facebook:</span>
                         <a href="#">
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" viewBox="0 0 24 24">
@@ -84,7 +70,7 @@
                             </svg>
                         </a>
                     </li>
-                    <li class="flex flex-row justify-center items-center space-x-2">
+                    <li class="flex flex-row items-center justify-between w-32 space-x-2 ">
                         <span class="text-md text-gray-700">Instagram:</span>
                         <a href="#">
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" viewBox="0 0 24 24">
@@ -94,7 +80,7 @@
                             </svg>
                         </a>
                     </li>
-                    <li class="flex flex-row justify-center items-center space-x-2">
+                    <li class="flex flex-row items-center justify-between w-32 space-x-2 ">
                         <span class="text-md text-gray-700">Youtube:</span>
                         <a href="#">
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" viewBox="0 0 24 24">
