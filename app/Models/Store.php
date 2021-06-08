@@ -11,7 +11,9 @@ class Store extends Model
 
     protected $fillable = [
         'name',
-        'url'
+        'url',
+        'description',
+        'banner_path'
     ];
 
     public function getRouteKeyName()

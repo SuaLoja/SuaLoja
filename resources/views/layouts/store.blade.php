@@ -31,7 +31,7 @@
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
                  stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
+                      d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
             </svg>
             <span class="text-xs font-bold">R$ 0,00</span>
         </div>
@@ -49,16 +49,16 @@
 
 {{-- Start footer --}}
 <footer class="flex justify-center items-center">
-    <div class="grid grid-cols-3 py-8 auto-cols-max max-w-6xl">
-        <div class="text-left">
-            <h3 class="h3 text-lg uppercase mb-6">Sobre nós</h3>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquid aspernatur, consequatur debitis
-                delectus earum expedita laboriosam laudantium magnam non nulla numquam, officiis pariatur porro
-                provident saepe sed sequi vel.
-            </p>
-        </div>
-        <div class="text-center">
+    <div class="grid @if($store->description) grid-cols-3 @else grid-cols-2 @endif py-8 auto-cols-max max-w-6xl">
+        @if($store->description)
+            <div class="text-left">
+                <h3 class="h3 text-lg uppercase mb-6">Sobre nós</h3>
+                <p>
+                    {{ $store->description }}
+                </p>
+            </div>
+        @endif
+        <div class='text-center'>
             <h1 class="h1 font-medium text-2xl uppercase">{{ $store->name }}</h1>
             <div class="mt-4">
                 <ul class="flex flex-col justify-center items-center">

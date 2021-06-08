@@ -2,21 +2,25 @@
 
 @section('content')
     {{-- Start banner --}}
-    <div class='flex justify-center items-center'>
-        <div class='grid grid-cols-2 max-w-4xl'>
-            <img
-                    src='https://picsum.photos/1920/1080'
-                    alt='Banner image'
-                    class='w-96 h-96 object-cover'>
-            <div class='flex flex-col justify-center items-center text-left'>
-                <p class='text-xl'>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquid aspernatur, consequatur debitis
-                    delectus earum expedita laboriosam laudantium magnam non nulla numquam, officiis pariatur porro
-                    provident saepe sed sequi vel.
-                </p>
+    @if($store->banner_path || $store->description)
+        <div class='flex justify-center items-center'>
+            <div class='grid grid-flow-col max-w-4xl space-x-4'>
+                @if($store->banner_path)
+                    <img
+                            src='{{ asset($store->banner_path) }}'
+                            alt='Banner image'
+                            class='w-96 h-96 object-contain'>
+                @endif
+                @if($store->description)
+                    <div class='flex flex-col justify-center items-center text-left'>
+                        <p class='text-xl'>
+                            {{ $store->description }}
+                        </p>
+                    </div>
+                @endif
             </div>
         </div>
-    </div>
+    @endif
     {{-- End banner--}}
 
     {{-- Start products grid--}}
