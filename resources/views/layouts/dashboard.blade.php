@@ -31,8 +31,10 @@
                                 </rect>
                             </svg>
                         </a>
-                        <span class="block pl-6 text-lg font-medium">
-                            {{ auth()->user()->store->name }}
+                        <span class="block pl-6 text-lg font-medium text-blue-500 no-underline hover:underline">
+                            <a href='/{{ auth()->user()->store->url }}' target='_blank'>
+                                {{ auth()->user()->store->name }}
+                            </a>
                         </span>
                     </div>
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
@@ -111,25 +113,25 @@
         <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
             <div class="pt-2 pb-3 space-y-1">
                 <a class="block pl-3 pr-4 py-2 @if(Route::is('dashboard')) border-l-4 border-blue-400 text-blue-700 bg-blue-100
-                        @else text-gray-700 bg-blue-50 @endif text-base font-medium focus:outline-none focus:text-blue-800
+                        @else text-gray-700 @endif text-base font-medium focus:outline-none focus:text-blue-800
                         focus:bg-blue-100 focus:border-blue-700 transition duration-150 ease-in-out"
                    href="/dashboard">
                     Dashboard
                 </a>
                 <a class="block pl-3 pr-4 py-2 @if(Route::is('dashboard.products')) border-l-4 border-blue-400 text-blue-700 bg-blue-100
-                        @else text-gray-700 bg-blue-50 @endif text-base font-medium focus:outline-none focus:text-blue-800
+                        @else text-gray-700 @endif text-base font-medium focus:outline-none focus:text-blue-800
                         focus:bg-blue-100 focus:border-blue-700 transition duration-150 ease-in-out"
                    href="{{ route('dashboard.products') }}">
                     Produtos
                 </a>
                 <a class="block pl-3 pr-4 py-2 @if(Route::is('dashboard.categories')) border-l-4 border-blue-400 text-blue-700 bg-blue-100
-                        @else text-gray-700 bg-blue-50 @endif text-base font-medium focus:outline-none focus:text-blue-800
+                        @else text-gray-700 @endif text-base font-medium focus:outline-none focus:text-blue-800
                         focus:bg-blue-100 focus:border-blue-700 transition duration-150 ease-in-out"
                    href="{{ route('dashboard.categories') }}">
                     Categorias
                 </a>
                 <a class="block pl-3 pr-4 py-2 @if(Route::is('dashboard.settings')) border-l-4 border-blue-400 text-blue-700 bg-blue-100
-                        @else text-gray-700 bg-blue-50 @endif text-base font-medium focus:outline-none focus:text-blue-800
+                        @else text-gray-700 @endif text-base font-medium focus:outline-none focus:text-blue-800
                         focus:bg-blue-100 focus:border-blue-700 transition duration-150 ease-in-out"
                    href="{{ route('dashboard.settings') }}">
                     Configurações

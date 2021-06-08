@@ -24,6 +24,7 @@
                                     Nome
                                 </th>
                                 <th scope="col" class="relative px-6 py-3">
+                                    <span class="sr-only">Visualizar</span>
                                     <span class="sr-only">Editar</span>
                                     <span class="sr-only">Excluir</span>
                                 </th>
@@ -36,7 +37,7 @@
                                         {{ $category->name }}
                                     </td>
                                     <td class="m-auto whitespace-nowrap text-right text-sm font-medium">
-                                        <div class="flex justify-end text-center space-x-4">
+                                        <div class="flex justify-end text-center space-x-4 mr-2">
                                             <a href="{{ route('dashboard.categories.edit', $category) }}"
                                                class="bg-yellow-100 text-yellow-600 hover:text-yellow-900 py-1 px-2 rounded">
                                                 Editar
