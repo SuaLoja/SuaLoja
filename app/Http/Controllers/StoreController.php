@@ -16,9 +16,9 @@ class StoreController extends Controller
         if (Request::query('category_id')) {
             $products = $store->products()->where(
                 'category_id', Request::query('category_id')
-            )->paginate(9);
+            )->paginate(6);
         } else {
-            $products = $store->products()->orderBy('title')->paginate(9);
+            $products = $store->products()->orderBy('title')->paginate(6);
         }
 
         return Response::view('store.index', [

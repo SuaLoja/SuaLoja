@@ -69,14 +69,13 @@
                                         R$ {{ $product->price }}
                                     </p>
                                 </div>
-                                <button class="btn-sm text-white bg-blue-600 hover:bg-blue-500 w-full my-2">
-                                    Visualizar
-                                </button>
                             </div>
                         </div>
                     </a>
                 @endforeach
             </div>
+        </div>
+        <div class='col-span-3 flex justify-end'>
             {{ $products->links() }}
         </div>
     </div>
