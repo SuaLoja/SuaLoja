@@ -32,8 +32,11 @@ class SettingsController extends Controller
             $store->banner_path = 'storage/' . $bannerPath;
         }
 
-        // Remove slashes, spaces and parentheses.
-        $store->whatsapp_number = Regex::replace('/[^0-9+]/', '', $request->validated()['whatsapp_number'])->result();
+        if ($request->whatsapp_number) {
+            // Remove slashes, spaces and parentheses.
+            $store->whatsapp_number = Regex::replace('/[^0-9+]/', '', $request->validated()['whatsapp_number'])->result();
+        }
+
         $store->facebook_url = $request->validated()['facebook_url'];
         $store->instagram_url = $request->validated()['instagram_url'];
 
