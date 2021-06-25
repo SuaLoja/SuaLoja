@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Storage;
+use Spatie\Regex\Regex;
 
 class SettingsController extends Controller
 {
@@ -29,8 +30,14 @@ class SettingsController extends Controller
             );
 
             $store->banner_path = 'storage/' . $bannerPath;
-            $store->save();
         }
+
+        // Remove slashes, spaces and parentheses.
+        $store->whatsapp_number = Regex::replace('/[^0-9+]/', '', $request->validated()['whatsapp_number'])->result();
+        $store->facebook_url = $request->validated()['facebook_url'];
+        $store->instagram_url = $request->validated()['instagram_url'];
+
+        $store->save();
 
         return Redirect::back();
     }
