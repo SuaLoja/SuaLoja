@@ -39,11 +39,13 @@
                         !
                     </h2>
                 @endif
-                <a href="#" class="py-3">
-                    <button class="btn text-white bg-blue-600 hover:bg-blue-500 w-full my-2 uppercase w-64">
-                        Contatar vendedor
-                    </button>
-                </a>
+                @if($store->whatsapp_number)
+                    <a href="https://wa.me/{{$store->whatsapp_number}}" class="py-3">
+                        <button class="btn text-white bg-blue-600 hover:bg-blue-500 w-full my-2 uppercase w-64">
+                            Contatar vendedor
+                        </button>
+                    </a>
+                @endif
             </div>
         </div>
     </div>

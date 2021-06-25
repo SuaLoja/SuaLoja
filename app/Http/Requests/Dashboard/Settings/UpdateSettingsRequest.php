@@ -17,6 +17,9 @@ class UpdateSettingsRequest extends FormRequest
             'name' => ['required', 'max:15'],
             'description' => ['nullable', 'max:255'],
             'banner' => ['nullable', 'mimes:jpg,png,jpeg', 'max:5048'],
+            'whatsapp_number' => ['nullable'],
+            'facebook_url' => ['nullable'],
+            'instagram_url' => ['nullable']
         ];
     }
 }
