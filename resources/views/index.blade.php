@@ -143,7 +143,7 @@
                         <div class="relative flex flex-col text-center lg:text-right">
                             <div class="relative inline-flex flex-col">
                                 <img class="md:max-w-none absolute w-full left-0 transform animate-float"
-                                     src="https://simple.cruip.com/static/media/features-bg.69c5091d.png" width="500"
+                                     src="https://cdn.discordapp.com/attachments/471038837129347072/854377350404898856/unknown.png" width="500"
                                      height="44"
                                      alt="Element" />
                             </div>
