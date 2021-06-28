@@ -1,0 +1,63 @@
+# dependencies
+node_modules/
+dist/
+/.pnp
+.pnp.js
+/vendor
+
+# production
+/build
+/public/hot
+/public/storage
+/storage/*.key
+
+# local env files
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# OS
+.DS_Store
+*.pem
+
+# Tests
+/coverage
+/.nyc_output
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# Env
+.env
+.env.backup
+
+# Laravel
+.phpunit.result.cache
+docker-compose.override.yml
+Homestead.json
+Homestead.yaml
+public/css
+public/js
+public/mix-manifest.json
